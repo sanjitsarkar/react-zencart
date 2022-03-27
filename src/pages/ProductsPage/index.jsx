@@ -1,10 +1,15 @@
 import React from "react";
 import Layout from "../../components/Layout";
-
+import FilterSection from "./FilterSection";
+import ProductsGrid from "./ProductsGrid";
+import "./ProductsPage.css";
 const ProductsPage = () => {
   return (
     <Layout>
-      <div>ProductsPage</div>
+      <main className="container w-full row h-screen ">
+        <FilterSection />
+        <ProductsGrid />
+      </main>
     </Layout>
   );
 };
