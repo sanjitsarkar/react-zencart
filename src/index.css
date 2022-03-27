@@ -10,4 +10,9 @@ html {
 body {
   background: var(--dark-color);
 }
+
+.card-dark {
+  overflow: hidden;
+  background-color: var(--dark-black);
+}
 /*# sourceMappingURL=index.css.map */

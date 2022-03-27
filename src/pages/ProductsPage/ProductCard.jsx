@@ -11,7 +11,7 @@ const ProductCard = ({
   price,
   discount,
   badge,
-  inStock,
+  inStock = true,
 }) => {
   return (
     <div className="card  card-dark  bx-sh-light-3">
@@ -37,7 +37,7 @@ const ProductCard = ({
             <h4 className="o-70 font-semibold">Price</h4>
             <h4 className="text-md font-medium">
               <span className="line-through mr-1 text-sm o-90">₹ {price}</span>₹
-              {price - price * (discount / 100)}
+              {(price - price * (discount / 100)).toFixed(0)}
             </h4>
           </div>
           <div className="card-actions">

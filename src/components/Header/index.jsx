@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
 
 const Header = () => {
+  const [navbar, setNavbar] = useState(false);
   return (
     <header className=" bg-dark-2 l-2 r-2 t-2 p-2 pl-3 pr-3 h-auto fixed flex items-center z-50 br-lg b-solid b-1 h-min br-primary back-blur-5 bx-sh-primary-3">
       <nav className="flex items-center justify-between w-full ">
         <ul className="left row items-center gap-2 justify-between">
-          <button className="menu btn-round-md bg-primary ml-0">
+          <button
+            className="menu btn-round-md bg-primary ml-0"
+            onClick={() => setNavbar(!navbar)}
+          >
             <i className="fa fa-bars"></i>
           </button>
           <Link to="/" className="text-xl text-light">
@@ -24,7 +28,11 @@ const Header = () => {
           </div>
         </ul>
          {" "}
-        <ul className="right row items-center gap-1 text-light">
+        <ul
+          className={`right row items-center gap-1 text-light ${
+            navbar ? "show" : ""
+          }`}
+        >
           <li>
             <Link to="/">Home</Link>
           </li>
