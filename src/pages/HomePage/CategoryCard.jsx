@@ -1,6 +1,6 @@
 import React from "react";
 
-const CategoryCard = ({ img, title, to }) => {
+const CategoryCard = ({ img, title, to = "/products" }) => {
   return (
     <div className="card w-48">
       <div className="card-header">
