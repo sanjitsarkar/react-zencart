@@ -1,0 +1,13 @@
+:root {
+  --light-grey: rgb(238, 238, 238);
+  --dark-black: hsl(180, 6%, 6%);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--dark-color);
+}
+/*# sourceMappingURL=index.css.map */

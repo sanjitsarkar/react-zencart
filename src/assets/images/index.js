@@ -1,7 +1,7 @@
 const IMAGES = {
   DJ_KIT: require("./categories/dj.png").default,
   SPEAKER: require("./categories/speaker.png").default,
-  HEADPHONE: require("./categories/behringer-headphone.png").default,
+  HEADPHONE: require("./categories/headphone.png").default,
   KEYBOARD: require("./categories/keyboard.png").default,
   MIDI_KEYBOARD: require("./categories/midi-keyboard.png").default,
   GUITAR: require("./categories/acoustic-guitar.png").default,

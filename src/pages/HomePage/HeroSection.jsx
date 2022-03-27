@@ -26,7 +26,7 @@ const HeroSection = () => {
           </Link>
         </div>
         <div className="hero-image">
-          <img src={IMAGES.BEHINGER} alt="headphone" className="img w-3-6" />
+          <img src={IMAGES.HEADPHONE} alt="headphone" className="img w-3-6" />
         </div>
       </div>
     </section>

@@ -1,0 +1,80 @@
+button.menu {
+  display: none;
+}
+
+.search-icon {
+  margin-right: 0;
+  margin-left: auto;
+  visibility: hidden;
+}
+
+nav ul.left,
+nav ul.right {
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+
+header nav ul.left .input-box {
+  min-width: 30vw;
+}
+
+@media only screen and (max-width: 535px) {
+  header nav ul.left .input-box {
+    display: none;
+  }
+  header nav ul.left {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify !important;
+        -ms-flex-pack: justify !important;
+            justify-content: space-between !important;
+  }
+  .search-icon {
+    visibility: visible;
+  }
+}
+
+@media only screen and (max-width: 870px) {
+  header nav ul.right {
+    z-index: 999;
+    display: none;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    background-color: var(--dark-color);
+    position: absolute;
+    top: 14vh;
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+    padding: 2rem;
+    border-radius: 0.3rem;
+    border: 1px solid var(--primary-color);
+    left: 0;
+  }
+  button.menu {
+    display: block;
+  }
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  height: 1em;
+  width: 1em;
+  border-radius: 50em;
+  background: url(https://pro.fontawesome.com/releases/v5.10.0/svgs/solid/times-circle.svg) no-repeat 50% 50%;
+  background-size: contain;
+  opacity: 0;
+  pointer-events: none;
+  -webkit-filter: invert(1);
+          filter: invert(1);
+}
+
+input[type="search"]:focus::-webkit-search-cancel-button {
+  opacity: 0.3;
+  pointer-events: all;
+}
+/*# sourceMappingURL=Header.css.map */
