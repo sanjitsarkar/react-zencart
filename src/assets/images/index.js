@@ -9,7 +9,7 @@ const IMAGES = {
   YAMAHA: require("./brands/yamaha.png").default,
   CASIO: require("./brands/casio.png").default,
   PIONEER: require("./brands/pioneer.png").default,
-  SONY: require("./brands/sony-1.png").default,
+  SONY: require("./brands/sony.png").default,
   AUDIO_TECHNICA: require("./brands/audio-technica.png").default,
 };
 
