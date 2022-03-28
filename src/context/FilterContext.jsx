@@ -10,7 +10,7 @@ const initialState = {
 };
 const FiltersContext = createContext();
 const FiltersProvider = ({ children }) => {
-  const [products, setProducts, searchProducts, fetchProducts] = useProduct();
+  const { products, setProducts, searchProducts, fetchProducts } = useProduct();
   const [filters, setFilters] = useState(initialState);
 
   const resetFilters = () => {
@@ -53,45 +53,27 @@ const FiltersProvider = ({ children }) => {
   };
   useEffect(async () => {
     const fetchedProducts = await fetchProducts();
-    const _products = fetchedProducts.data.filter((product) => {
-      if (filters.categories.length > 0) {
-        if (!filters.categories.includes(product.category)) {
-          return false;
-        }
-      }
-      if (filters.brands.length > 0) {
-        if (!filters.brands.includes(product.brand)) {
-          return false;
-        }
-      }
-      if (filters.price) {
-        if (product.price > filters.price) {
-          return false;
-        }
-      }
-      if (filters.rating) {
-        if (product.rating < filters.rating) {
-          return false;
-        }
-      }
-      return true;
-    });
+    const _products = fetchedProducts.data.filter(
+      (product) =>
+        filters.categories.length &&
+        filters.categories.includes(product.categoryName)
+    );
     setProducts({
       loading: false,
       data: _products,
       error: "",
     });
-    console.log("pro", _products);
+    // console.log("pro", _products);
   }, [filters]);
   return (
     <FiltersContext.Provider
-      value={[
+      value={{
         filters,
         setFilters,
         handleCategories,
         handleBrands,
         resetFilters,
-      ]}
+      }}
     >
       {children}
     </FiltersContext.Provider>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
+import ToTopButton from "../../components/ToTopButton";
 import { FiltersProvider } from "../../context/FilterContext";
 import { ProductsProvider } from "../../context/ProductsContext";
 import FilterSection from "./FilterSection";
@@ -17,6 +18,7 @@ const ProductsPage = () => {
       <Header />
 
       <main className="container w-full row h-screen text-light">
+        <ToTopButton />
         <ProductsProvider>
           <FiltersProvider>
             <FilterSection showFilter={showFilter} />

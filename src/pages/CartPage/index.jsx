@@ -1,11 +1,17 @@
 import React from "react";
-import Layout from "../../components/Layout";
-
+import Header from "../../components/Header";
+import CartSection from "./CartSection";
+import "./CartPage.css";
+import ToTopButton from "../../components/ToTopButton";
 const CartPage = () => {
   return (
-    <Layout>
-      <div>CartPage</div>
-    </Layout>
+    <>
+      <Header />
+      <main className="cart-wrapper h-full l-0 r-0 w-full relative text-light">
+        <ToTopButton />
+        <CartSection />
+      </main>
+    </>
   );
 };
 

@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { useCart } from "../../context/CartContext";
 import RatingBar from "./RatingBar";
 
 const ProductCard = ({
@@ -14,6 +15,14 @@ const ProductCard = ({
   badge,
   inStock = true,
 }) => {
+  const {
+    cart,
+    setCart,
+    addToCart,
+    decrementQuantity,
+    removeFromCart,
+    clearCart,
+  } = useCart();
   return (
     <div className="card  card-dark  bx-sh-light-3">
       {!inStock && <h1 className="outofstock">Out Of Stock</h1>}
@@ -50,7 +59,24 @@ const ProductCard = ({
             </div>
           </div>
           <div className="card-actions">
-            <button className="btn btn-round-md btn-dark">
+            <button
+              className="btn btn-round-md btn-dark"
+              onClick={() =>
+                inStock &&
+                addToCart({
+                  _id,
+                  name,
+                  desc,
+                  images,
+                  categoryName,
+                  brand,
+                  ratings,
+                  price,
+                  discount,
+                  badge,
+                })
+              }
+            >
               <i className="fa fa-shopping-cart"></i>
             </button>
             <button className=" btn-round-md btn bg-light text-pink">

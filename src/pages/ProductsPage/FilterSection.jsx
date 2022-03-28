@@ -2,7 +2,7 @@ import React from "react";
 import { useFilter } from "../../context/FilterContext";
 
 const FilterSection = ({ showFilter }) => {
-  const [filters, setFilters, handleCategories, handleBrands, resetFilters] =
+  const { filters, setFilters, handleCategories, handleBrands, resetFilters } =
     useFilter();
 
   return (

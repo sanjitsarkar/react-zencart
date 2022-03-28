@@ -1,9 +1,14 @@
 import MockmanEs from "mockman-js";
-import React from "react";
+import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
+import { useCart } from "./context/CartContext";
 import { CartPage, HomePage, ProductsPage, WishListPage } from "./pages";
 
 function App() {
+  // const { cart } = useCart();
+  // useEffect(() => {
+  //   console.log(cart);
+  // }, [cart]);
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />

@@ -32,7 +32,7 @@ const ProductsProvider = ({ children }) => {
   }, []);
   return (
     <ProductsContext.Provider
-      value={[products, setProducts, searchProducts, fetchProducts]}
+      value={{ products, setProducts, searchProducts, fetchProducts }}
     >
       {children}
     </ProductsContext.Provider>

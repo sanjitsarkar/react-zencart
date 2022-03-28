@@ -5,7 +5,7 @@ import { useProduct } from "../../context/ProductsContext";
 import ProductCard from "./ProductCard";
 
 const ProductsGrid = ({ toggleFilter }) => {
-  const [products] = useProduct();
+  const { products } = useProduct();
 
   return (
     <section className="products overflow-hidden overflow-y-auto ">
@@ -19,7 +19,7 @@ const ProductsGrid = ({ toggleFilter }) => {
       <div className="products-grid gap-1">
         {products.loading && <Loader />}
         {!products.loading &&
-          products.data.length &&
+          products.data.length > 0 &&
           products.data.map((product) => (
             <ProductCard {...product} key={product._id} />
           ))}
