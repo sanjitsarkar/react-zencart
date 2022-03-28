@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 import { useCart } from "../../context/CartContext";
 import "./Header.css";
 
 const Header = () => {
   const [navbar, setNavbar] = useState(false);
+  const { user, isLoggedIn, signUp, logIn, logOut } = useAuth();
   const { cart, setCart, addToCart, removeFromCart, clearCart } = useCart();
 
   return (
@@ -40,41 +42,46 @@ const Header = () => {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/" className="btn btn-primary">
+            <Link to="/login" className="btn btn-primary">
               Login
             </Link>
           </li>
           <li>
-            <Link to="/" className="btn btn-secondary">
+            <Link to="/signup" className="btn btn-secondary">
               Signup
             </Link>
           </li>
 
-          <li>
-            <Link to="/cart">
-              <div className="badge-holder">
-                <i className="fa fa-shopping-cart grid place-content-center w-12 h-12 bg-light p-2 br-full text-dark"></i>
-                <span className="badge badge-dark">{cart.length}</span>
-              </div>
-            </Link>
-          </li>
-          <li>
-            <Link to="/wishlist">
-              <div className="badge-holder">
-                <i className="fa fa-heart grid place-content-center w-12 h-12 bg-pink text-light p-2 br-full text-light"></i>
-                <span className="badge badge-dark">0</span>
-              </div>
-            </Link>
-          </li>
-          <li>
-            <Link to="/">
-              <img
-                src="https://bestprofilepictures.com/wp-content/uploads/2021/04/Cool-Profile-Picture.jpg"
-                alt="user"
-                className="avatar avatar-xsm "
-              />
-            </Link>
-          </li>
+          {isLoggedIn && (
+            <>
+              <li>
+                <Link to="/cart">
+                  <div className="badge-holder">
+                    <i className="fa fa-shopping-cart grid place-content-center w-12 h-12 bg-light p-2 br-full text-dark"></i>
+                    <span className="badge badge-dark">{cart.length}</span>
+                  </div>
+                </Link>
+              </li>
+
+              <li>
+                <Link to="/wishlist">
+                  <div className="badge-holder">
+                    <i className="fa fa-heart grid place-content-center w-12 h-12 bg-pink text-light p-2 br-full text-light"></i>
+                    <span className="badge badge-dark">0</span>
+                  </div>
+                </Link>
+              </li>
+              <li>
+                <Link to="/">
+                  <img
+                    src="https://bestprofilepictures.com/wp-content/uploads/2021/04/Cool-Profile-Picture.jpg"
+                    alt="user"
+                    className="avatar avatar-xsm "
+                  />
+                </Link>
+              </li>
+            </>
+          )}
         </ul>
       </nav>
     </header>

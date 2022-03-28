@@ -1,19 +1,7 @@
 import React from "react";
 import { useCart } from "../../context/CartContext";
 
-const CartProductCard = ({
-  _id,
-  name,
-  desc,
-  images,
-  categoryName,
-  brand,
-  ratings,
-  price,
-  discount,
-  badge,
-  quantity,
-}) => {
+const CartProductCard = ({ product }) => {
   const {
     cart,
     setCart,
@@ -25,42 +13,33 @@ const CartProductCard = ({
   return (
     <div className="card card-horizontal card-dark">
       <div className="card-header">
-        {/* <img src={images[0]} alt={name} className="object-contain" /> */}
+        <img
+          src={product.images[0]}
+          alt={product.name}
+          className="object-contain"
+        />
       </div>
       <div className="card-bottom">
         <div className="card-body ">
-          <h1 className="card-title">{name}</h1>
-          <p className="card-description">{desc}</p>
+          <h1 className="card-title">{product.name}</h1>
+          <p className="card-description">{product.desc}</p>
         </div>
         <div className="card-footer">
           <div className="row items-center gap-05">
             <h4 className="o-70 font-semibold">Price</h4>
-            <h4 className="text-md font-medium">₹ {price}</h4>
+            <h4 className="text-md font-medium">₹ {product.price}</h4>
           </div>
           <div className="card-actions justify-between">
             <button
               className="btn btn-round-md btn-dark"
-              onClick={() =>
-                addToCart({
-                  _id,
-                  name,
-                  desc,
-                  images,
-                  categoryName,
-                  brand,
-                  ratings,
-                  price,
-                  discount,
-                  badge,
-                })
-              }
+              onClick={() => addToCart(product)}
             >
               <i className="fa fa-add"></i>
             </button>
-            {quantity}
+            {product.qty}
             <button
               className=" btn-round-md btn btn-dark"
-              onClick={() => decrementQuantity(_id)}
+              onClick={() => decrementQuantity(product._id, product.qty)}
             >
               <i className="fa fa-minus"></i>
             </button>
@@ -69,7 +48,7 @@ const CartProductCard = ({
         <div className="row gap-1 items-center  p-1">
           <button
             className=" btn btn-round-md  btn-error"
-            onClick={() => removeFromCart(_id)}
+            onClick={() => removeFromCart(product._id)}
           >
             <i className="fa fa-trash"></i>
           </button>

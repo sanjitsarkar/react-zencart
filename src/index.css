@@ -20,4 +20,17 @@ body {
 .rating-bar .rating-active {
   font-size: 0.8rem;
 }
+
+/* Login and Sign Up Form Stying Section */
+form.form {
+  background-color: var(--light-grey);
+  margin-bottom: 15vh;
+  margin-top: 20vh;
+}
+
+@media only screen and (max-width: 535px) {
+  form.form {
+    padding: 1rem;
+  }
+}
 /*# sourceMappingURL=index.css.map */
