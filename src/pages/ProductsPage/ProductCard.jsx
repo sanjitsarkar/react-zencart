@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import RatingBar from "./RatingBar";
 
 const ProductCard = ({
   _id,
@@ -33,12 +34,20 @@ const ProductCard = ({
           <p className="card-description">{desc}</p>
         </div>
         <div className="card-footer">
-          <div className="row items-center gap-05">
-            <h4 className="o-70 font-semibold">Price</h4>
-            <h4 className="text-md font-medium">
-              <span className="line-through mr-1 text-sm o-90">₹ {price}</span>₹
-              {(price - price * (discount / 100)).toFixed(0)}
-            </h4>
+          <div className="col">
+            <div className="row items-center gap-05">
+              <h4 className="o-70 font-semibold">Price</h4>
+              <h4 className="text-md font-medium">
+                <span className="line-through mr-1 text-sm o-90">
+                  ₹ {price}
+                </span>
+                ₹{(price - price * (discount / 100)).toFixed(0)}
+              </h4>
+            </div>
+            <div className="row items-center gap-025">
+              <RatingBar ratings={parseInt(ratings)} />
+              <h4 className="mr-1 text-sm o-90">{ratings}</h4>
+            </div>
           </div>
           <div className="card-actions">
             <button className="btn btn-round-md btn-dark">

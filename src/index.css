@@ -15,4 +15,9 @@ body {
   overflow: hidden;
   background-color: var(--dark-black);
 }
+
+.rating-bar .rating,
+.rating-bar .rating-active {
+  font-size: 0.8rem;
+}
 /*# sourceMappingURL=index.css.map */

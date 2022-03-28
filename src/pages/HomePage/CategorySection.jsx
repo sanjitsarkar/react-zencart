@@ -14,7 +14,8 @@ const CategorySection = () => {
       <h1 className="text-2xl mb-3 section-title">Shop By Category</h1>
       <div className="row gap-1 ">
         {categories.laoding && <Loader />}
-        {!categories.loading && categories.data.length ? (
+        {!categories.loading &&
+          categories.data.length &&
           categories.data
             .slice(0, 6)
             .map((category) => (
@@ -23,8 +24,8 @@ const CategorySection = () => {
                 title={category.categoryName}
                 key={category._id}
               />
-            ))
-        ) : (
+            ))}
+        {!categories.loading && !categories.data.length && (
           <h1>No Categories Found</h1>
         )}
       </div>

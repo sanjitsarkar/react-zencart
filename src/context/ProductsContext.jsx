@@ -7,33 +7,33 @@ const ProductsProvider = ({ children }) => {
     data: [],
     error: "",
   });
-
-  //   const searchProducts = async (filters) => {
-  //     axios
-  //       .get("/api/products")
-  //       .then((res) => {
-  //         // console.log(res.data.products);
-  //         setProducts({ loading: false, data: res.data.products, error: "" });
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //         setProducts({ loading: false, data: [], error: err.message });
-  //       });
-  //   };
-  useEffect(() => {
+  const fetchProducts = async () => {
+    try {
+      const res = await axios.get("/api/products");
+      return { loading: false, data: res.data.products, error: "" };
+    } catch (err) {
+      console.log(err);
+      return { loading: false, data: [], error: err.message };
+    }
+  };
+  const searchProducts = () => {
     axios
       .get("/api/products")
       .then((res) => {
-        // console.log(res.data.products);
         setProducts({ loading: false, data: res.data.products, error: "" });
       })
       .catch((err) => {
         console.log(err);
         setProducts({ loading: false, data: [], error: err.message });
       });
+  };
+  useEffect(() => {
+    searchProducts();
   }, []);
   return (
-    <ProductsContext.Provider value={[products, setProducts]}>
+    <ProductsContext.Provider
+      value={[products, setProducts, searchProducts, fetchProducts]}
+    >
       {children}
     </ProductsContext.Provider>
   );

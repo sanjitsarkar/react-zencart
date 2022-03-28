@@ -18,12 +18,13 @@ const ProductsGrid = ({ toggleFilter }) => {
       </div>
       <div className="products-grid gap-1">
         {products.loading && <Loader />}
-        {products.data.length ? (
+        {!products.loading &&
+          products.data.length &&
           products.data.map((product) => (
             <ProductCard {...product} key={product._id} />
-          ))
-        ) : (
-          <h1>No Products Available</h1>
+          ))}
+        {!products.loading && !products.data.length && (
+          <h4>No Products Available</h4>
         )}
       </div>
     </section>
