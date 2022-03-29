@@ -9,10 +9,14 @@ const WishListSection = () => {
       <h1 className="text-2xl text-center pt-2">My Wishlist</h1>
       <section className="wishlist-section w-full h-full mt-2  mr-0 pr-0 row gap-2 justify-center ">
         <div className="wishlist-grid  p-3 pt-0">
-          {wishList.map((product) => (
-            <WishListProductCard product={product} key={product._id} />
-          ))}
-          {wishList.length == 0 && <h2>Wishlist is empty</h2>}
+          {wishList.loading && <Loader />}
+          {!wishList.loading &&
+            wishList.data.map((product) => (
+              <WishListProductCard product={product} key={product._id} />
+            ))}
+          {!wishList.loading && wishList.data.length == 0 && (
+            <h2>Wishlist is empty</h2>
+          )}
         </div>
       </section>
     </>

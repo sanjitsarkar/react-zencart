@@ -23,7 +23,6 @@ const AuthProvider = ({ children }) => {
 
   const signUp = (e) => {
     e.preventDefault();
-    console.log("signupCred", signupCred);
     if (signupCred.password !== signupCred.confirmPassword) {
       return;
     }
@@ -38,19 +37,15 @@ const AuthProvider = ({ children }) => {
         })
       )
       .then((res) => {
-        console.log("res", res);
-
         setUser({ loading: false, data: res.data, error: "" });
         setIsLoggedIn(true);
       })
       .catch((err) => {
-        console.log(err);
         setUser({ loading: false, data: [], error: err.message });
       });
   };
   const logIn = (e) => {
     e.preventDefault();
-    console.log("loginCred", loginCred);
 
     axios
       .post(
@@ -66,7 +61,6 @@ const AuthProvider = ({ children }) => {
         setIsLoggedIn(true);
       })
       .catch((err) => {
-        console.log(err);
         setUser({ loading: false, data: [], error: err.message });
       });
   };

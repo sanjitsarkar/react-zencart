@@ -7,7 +7,7 @@ import "./Header.css";
 
 const Header = () => {
   const [navbar, setNavbar] = useState(false);
-  const { user, isLoggedIn, signUp, logIn, logOut } = useAuth();
+  const { isLoggedIn, logOut } = useAuth();
   const { cart } = useCart();
   const { wishList } = useWishList();
   return (
@@ -71,7 +71,9 @@ const Header = () => {
                 <Link to="/wishlist">
                   <div className="badge-holder">
                     <i className="fa fa-heart grid place-content-center w-12 h-12 bg-pink text-light p-2 br-full text-light"></i>
-                    <span className="badge badge-dark">{wishList.length}</span>
+                    <span className="badge badge-dark">
+                      {wishList.data.length}
+                    </span>
                   </div>
                 </Link>
               </li>

@@ -3,22 +3,11 @@ import { useCart } from "../../context/CartContext";
 import { useWishList } from "../../context/WishListContext";
 
 const CartProductCard = ({ product }) => {
-  const {
-    cart,
-    setCart,
-    addToCart,
-    decrementQuantity,
-    removeFromCart,
-    clearCart,
-  } = useCart();
-  const {
-    wishList,
-    setWishList,
-    toggleWishList,
-    isAlreadyInWishList,
-    clearWishList,
-  } = useWishList();
-  const [isInWishList, setIsInWishList] = useState(false);
+  const { addToCart, decrementQuantity, removeFromCart } = useCart();
+  const { toggleWishList, isAlreadyInWishList } = useWishList();
+  const [isInWishList, setIsInWishList] = useState(
+    isAlreadyInWishList(product._id)
+  );
   useEffect(() => {
     if (isAlreadyInWishList(product._id)) {
       setIsInWishList(() => true);

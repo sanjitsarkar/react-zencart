@@ -1,17 +1,20 @@
 import axios from "axios";
 import React, { useState, createContext, useContext, useEffect } from "react";
 import { useAuth } from "./AuthContext";
+const initialState = {
+  loading: true,
+  data: [],
+  error: "",
+};
 const WishListContext = createContext();
 const WishListProvider = ({ children }) => {
-  const { user, isLoggedIn, signUp, logIn, logOut } = useAuth();
-  const [wishList, setWishList] = useState([]);
+  const { isLoggedIn } = useAuth();
+  const [wishList, setWishList] = useState(initialState);
   const toggleWishList = (product) => {
-    console.log("product", product);
     if (!isLoggedIn) {
-      console.log("You need to login to add product to WishList");
       return;
     }
-    if (wishList.find((item) => item._id === product._id)) {
+    if (wishList.data.find((item) => item._id === product._id)) {
       removeFromWishList(product._id);
     } else {
       axios
@@ -25,9 +28,11 @@ const WishListProvider = ({ children }) => {
           }
         )
         .then((res) => {
-          setWishList(res.data.wishlist);
+          setWishList({ loading: false, data: res.data.wishlist, error: "" });
         })
-        .catch((err) => {});
+        .catch((err) => {
+          setWishList({ loading: false, data: [], error: err.message });
+        });
     }
   };
 
@@ -37,15 +42,17 @@ const WishListProvider = ({ children }) => {
         headers: { authorization: localStorage.getItem("token") },
       })
       .then((res) => {
-        setWishList(res.data.wishlist);
+        setWishList({ loading: false, data: res.data.wishlist, error: "" });
       })
-      .catch((err) => {});
+      .catch((err) => {
+        setWishList({ loading: false, data: [], error: err.message });
+      });
   };
   const clearWishList = () => {
     setWishList([]);
   };
   const isAlreadyInWishList = (id) => {
-    wishList.forEach((item) => {
+    wishList.data.forEach((item) => {
       if (item._id === id) {
         return true;
       }
@@ -58,9 +65,11 @@ const WishListProvider = ({ children }) => {
         headers: { authorization: localStorage.getItem("token") },
       })
       .then((res) => {
-        setWishList(res.data.wishlist);
+        setWishList({ loading: false, data: res.data.wishlist, error: "" });
       })
-      .catch((err) => {});
+      .catch((err) => {
+        setWishList({ loading: false, data: [], error: err.message });
+      });
   }, []);
 
   return (

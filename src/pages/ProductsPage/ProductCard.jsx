@@ -4,21 +4,8 @@ import { useWishList } from "../../context/WishListContext";
 import RatingBar from "./RatingBar";
 
 const ProductCard = ({ product }) => {
-  const {
-    cart,
-    setCart,
-    addToCart,
-    decrementQuantity,
-    removeFromCart,
-    clearCart,
-  } = useCart();
-  const {
-    wishList,
-    setWishList,
-    toggleWishList,
-    isAlreadyInWishList,
-    clearWishList,
-  } = useWishList();
+  const { addToCart } = useCart();
+  const { toggleWishList, isAlreadyInWishList } = useWishList();
   const [isInWishList, setIsInWishList] = useState(false);
   useEffect(() => {
     if (isAlreadyInWishList(product._id)) {

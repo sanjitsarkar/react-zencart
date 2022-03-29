@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useEffect, useState, createContext, useContext } from "react";
 import { useProduct } from "./ProductsContext";
 const initialState = {
@@ -10,14 +9,13 @@ const initialState = {
 };
 const FiltersContext = createContext();
 const FiltersProvider = ({ children }) => {
-  const { products, setProducts, searchProducts, fetchProducts } = useProduct();
+  const { setProducts, searchProducts, fetchProducts } = useProduct();
   const [filters, setFilters] = useState(initialState);
 
   const resetFilters = () => {
     searchProducts();
   };
   const handleCategories = (e) => {
-    console.log("VALUE", e.target.value);
     !filters.categories.includes(e.target.value)
       ? setFilters((_filters) => {
           return {
@@ -63,7 +61,6 @@ const FiltersProvider = ({ children }) => {
       data: _products,
       error: "",
     });
-    // console.log("pro", _products);
   }, [filters]);
   return (
     <FiltersContext.Provider

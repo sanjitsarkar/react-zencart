@@ -6,11 +6,11 @@ const CartPriceDetails = ({ cart }) => {
   const [totalDiscount, setTotalDiscount] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
   useEffect(() => {
-    if (cart.length > 0) {
+    if (cart.data.length > 0) {
       let _totalMarketPrice = 0;
       let _totalQuantity = 0;
       let _totalDiscount = 0;
-      cart.forEach((item) => {
+      cart.data.forEach((item) => {
         _totalMarketPrice += item.price * item.qty;
         _totalQuantity += item.qty;
         _totalDiscount += _totalMarketPrice * (item.discount / 100);

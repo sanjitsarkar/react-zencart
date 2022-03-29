@@ -12,7 +12,6 @@ const ProductsProvider = ({ children }) => {
       const res = await axios.get("/api/products");
       return { loading: false, data: res.data.products, error: "" };
     } catch (err) {
-      console.log(err);
       return { loading: false, data: [], error: err.message };
     }
   };
@@ -23,7 +22,6 @@ const ProductsProvider = ({ children }) => {
         setProducts({ loading: false, data: res.data.products, error: "" });
       })
       .catch((err) => {
-        console.log(err);
         setProducts({ loading: false, data: [], error: err.message });
       });
   };

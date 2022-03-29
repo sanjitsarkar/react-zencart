@@ -8,12 +8,10 @@ const initialState = {
   error: "",
 };
 const CartProvider = ({ children }) => {
-  const { user, isLoggedIn, signUp, logIn, logOut } = useAuth();
+  const { isLoggedIn } = useAuth();
   const [cart, setCart] = useState(initialState);
   const addToCart = (product) => {
-    console.log("product", product);
     if (!isLoggedIn) {
-      console.log("You need to login to add product to cart");
       return;
     }
     if (cart.data.find((item) => item._id === product._id)) {

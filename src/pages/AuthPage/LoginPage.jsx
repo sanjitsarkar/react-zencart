@@ -3,17 +3,7 @@ import Header from "../../components/Header";
 import { useAuth } from "../../context/AuthContext";
 
 const LoginPage = () => {
-  const {
-    user,
-    isLoggedIn,
-    signUp,
-    logIn,
-    logOut,
-    loginCred,
-    setLoginCred,
-    signupCred,
-    setSignupCred,
-  } = useAuth();
+  const { logIn, loginCred, setLoginCred } = useAuth();
   return (
     <>
       <Header />
