@@ -7,7 +7,7 @@ import "./Header.css";
 const Header = () => {
   const [navbar, setNavbar] = useState(false);
   const { user, isLoggedIn, signUp, logIn, logOut } = useAuth();
-  const { cart, setCart, addToCart, removeFromCart, clearCart } = useCart();
+  const { cart } = useCart();
 
   return (
     <header className=" bg-dark-2 l-2 r-2 t-2 p-2 pl-3 pr-3 h-auto fixed flex items-center z-50 br-lg b-solid b-1 h-min br-primary back-blur-5 bx-sh-primary-3">
@@ -61,7 +61,7 @@ const Header = () => {
                 <Link to="/cart">
                   <div className="badge-holder">
                     <i className="fa fa-shopping-cart grid place-content-center w-12 h-12 bg-light p-2 br-full text-dark"></i>
-                    <span className="badge badge-dark">{cart.length}</span>
+                    <span className="badge badge-dark">{cart.data.length}</span>
                   </div>
                 </Link>
               </li>
