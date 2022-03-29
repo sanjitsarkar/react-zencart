@@ -9,10 +9,10 @@ import LoginPage from "./pages/AuthPage/LoginPage";
 import SignupPage from "./pages/AuthPage/SignupPage";
 
 function App() {
-  // const { cart } = useCart();
-  // useEffect(() => {
-  //   console.log(cart);
-  // }, [cart]);
+  const { cart } = useCart();
+  useEffect(() => {
+    console.log("appcart", cart);
+  }, [cart]);
   const { user, isLoggedIn, signUp, logIn, logOut } = useAuth();
 
   return (

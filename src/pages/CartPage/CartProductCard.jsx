@@ -11,12 +11,13 @@ const CartProductCard = ({ product }) => {
     clearCart,
   } = useCart();
   return (
-    <div className="card card-horizontal card-dark">
+    <div className="cart-product-card card card-horizontal card-dark">
       <div className="card-header">
         <img
           src={product.images[0]}
           alt={product.name}
-          className="object-contain"
+          id="cart-image"
+          className="object-cover"
         />
       </div>
       <div className="card-bottom">
@@ -43,18 +44,17 @@ const CartProductCard = ({ product }) => {
             >
               <i className="fa fa-minus"></i>
             </button>
+
+            <button
+              className=" btn btn-round-md  btn-error"
+              onClick={() => removeFromCart(product._id)}
+            >
+              <i className="fa fa-trash"></i>
+            </button>
+            <button className=" btn btn-round-md  bg-pink">
+              <i className="fa fa-heart"></i>
+            </button>
           </div>
-        </div>
-        <div className="row gap-1 items-center  p-1">
-          <button
-            className=" btn btn-round-md  btn-error"
-            onClick={() => removeFromCart(product._id)}
-          >
-            <i className="fa fa-trash"></i>
-          </button>
-          <button className=" btn btn-round-md  bg-pink">
-            <i className="fa fa-heart"></i>
-          </button>
         </div>
       </div>
     </div>

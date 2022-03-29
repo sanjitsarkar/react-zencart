@@ -41,17 +41,20 @@ const Header = () => {
           <li>
             <Link to="/">Home</Link>
           </li>
-          <li>
-            <Link to="/login" className="btn btn-primary">
-              Login
-            </Link>
-          </li>
-          <li>
-            <Link to="/signup" className="btn btn-secondary">
-              Signup
-            </Link>
-          </li>
-
+          {!isLoggedIn && (
+            <>
+              <li>
+                <Link to="/login" className="btn btn-primary">
+                  Login
+                </Link>
+              </li>
+              <li>
+                <Link to="/signup" className="btn btn-secondary">
+                  Signup
+                </Link>
+              </li>
+            </>
+          )}
           {isLoggedIn && (
             <>
               <li>
@@ -79,6 +82,11 @@ const Header = () => {
                     className="avatar avatar-xsm "
                   />
                 </Link>
+              </li>
+              <li>
+                <button className="btn btn-primary" onClick={logOut}>
+                  Logout
+                </button>
               </li>
             </>
           )}

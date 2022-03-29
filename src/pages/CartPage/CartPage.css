@@ -6,18 +6,7 @@
   overflow-y: scroll;
 }
 
-/* @media only screen and (max-width: 565px) {
-  .cart-price-details,
-  .cart-products {
-    margin: 0.5rem;
-  }
-  .card-header img {
-    width: 100%;
-    min-height: 10rem;
-  }
-} */
 .cart-products {
-  width: 35rem;
   padding-bottom: 5vh;
 }
 
@@ -32,11 +21,35 @@
   width: max-content;
 }
 
+.cart-product-card {
+  width: 50rem;
+}
+
+.cart-product-card .card-header {
+  display: -ms-grid;
+  display: grid;
+  place-content: center;
+}
+
+.coupon-section input {
+  color: white;
+}
+
+#cart-image {
+  padding: 1rem;
+  max-height: 10rem;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
 @media only screen and (max-width: 935px) {
   .cart-products {
     -webkit-box-ordinal-group: 3;
         -ms-flex-order: 2;
             order: 2;
+  }
+  .cart-product-card {
+    width: 100%;
   }
   .cart-price-details {
     -webkit-box-ordinal-group: 2;
@@ -50,6 +63,9 @@
   button {
     width: 100%;
   }
+  .card-horizontal .card-header {
+    min-width: 100%;
+  }
 }
 
 @media only screen and (max-width: 580px) {
@@ -57,22 +73,11 @@
     -ms-flex-line-pack: center;
         align-content: center;
   }
-  .card-horizontal {
-    /* flex-direction: column; */
-  }
-  .card-header img {
-    /* width: 100%;
-    max-height: 13rem; */
-  }
 }
 
 @media only screen and (max-width: 380px) {
   .cart-section {
     padding: 1rem;
   }
-  /* .card-header img {
-    width: 100%;
-    max-height: 10rem;
-  } */
 }
 /*# sourceMappingURL=CartPage.css.map */

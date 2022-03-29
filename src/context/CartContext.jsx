@@ -27,9 +27,7 @@ const CartProvider = ({ children }) => {
         .then((res) => {
           setCart(res.data.cart);
         })
-        .catch((err) => {
-          console.log(err.message);
-        });
+        .catch((err) => {});
     } else {
       axios
         .post(
@@ -44,9 +42,7 @@ const CartProvider = ({ children }) => {
         .then((res) => {
           setCart(res.data.cart);
         })
-        .catch((err) => {
-          console.log(err.message);
-        });
+        .catch((err) => {});
     }
   };
   const decrementQuantity = (id, quantity) => {
@@ -69,9 +65,7 @@ const CartProvider = ({ children }) => {
       .then((res) => {
         setCart(res.data.cart);
       })
-      .catch((err) => {
-        console.log(err.message);
-      });
+      .catch((err) => {});
   };
   const removeFromCart = (id) => {
     axios
@@ -87,27 +81,16 @@ const CartProvider = ({ children }) => {
     setCart([]);
   };
   useEffect(() => {
-    if (
-      localStorage.getItem("cart") &&
-      localStorage.getItem("cart").length == 0
-    ) {
-      axios
-        .get("/api/user/cart", {
-          headers: { authorization: localStorage.getItem("token") },
-        })
-        .then((res) => {
-          setCart(res.data.cart);
-        })
-        .catch((err) => {
-          console.log(err.message);
-        });
-    } else {
-      setCart(JSON.parse(localStorage.getItem("cart")));
-    }
+    axios
+      .get("/api/user/cart", {
+        headers: { authorization: localStorage.getItem("token") },
+      })
+      .then((res) => {
+        setCart(res.data.cart);
+      })
+      .catch((err) => {});
   }, []);
-  useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
+
   return (
     <CartContext.Provider
       value={{

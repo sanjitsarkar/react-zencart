@@ -7,7 +7,6 @@ const CartPriceDetails = ({ cart }) => {
   const [totalPrice, setTotalPrice] = useState(0);
   useEffect(() => {
     if (cart.length > 0) {
-      console.log("Cart Details", cart);
       let _totalMarketPrice = 0;
       let _totalQuantity = 0;
       let _totalDiscount = 0;
@@ -42,7 +41,7 @@ const CartPriceDetails = ({ cart }) => {
         <hr />
         <div className="row justify-between items-center mt-1 mb-1">
           <h4 className=" font-normal">Total</h4>
-          <h4 className=" font-normal">₹ {totalPrice}</h4>
+          <h4 className=" font-normal">₹ {totalPrice.toFixed(2)}</h4>
         </div>
         <hr />
       </div>

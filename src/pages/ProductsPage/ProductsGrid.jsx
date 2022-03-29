@@ -11,7 +11,10 @@ const ProductsGrid = ({ toggleFilter }) => {
     <section className="products overflow-hidden overflow-y-auto ">
       <div className="row justify-between  mb-3 gap-05 w-full">
         <h1 className="text-xl font-md">Showing All Products</h1>
-        <button className="filter-btn btn btn-primary" onClick={toggleFilter}>
+        <button
+          className="filter-btn btn btn-primary w-auto"
+          onClick={toggleFilter}
+        >
           <i className="fa fa-filter"></i>
           <span>Filter</span>
         </button>
