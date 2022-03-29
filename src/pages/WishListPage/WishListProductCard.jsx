@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useCart } from "../../context/CartContext";
 import { useWishList } from "../../context/WishListContext";
-import RatingBar from "./RatingBar";
 
-const ProductCard = ({ product }) => {
+const WishListProductCard = ({ product }) => {
   const {
     cart,
     setCart,
@@ -28,8 +27,7 @@ const ProductCard = ({ product }) => {
     }
   }, []);
   return (
-    <div className="card  card-dark  bx-sh-light-3">
-      {!product.inStock && <h1 className="outofstock">Out Of Stock</h1>}
+    <div className="card card-sm card-dark">
       <div className="card-header">
         <img
           src={product.images[0]}
@@ -39,32 +37,13 @@ const ProductCard = ({ product }) => {
       </div>
       <div className="card-bottom">
         <div className="card-body">
-          {product.badge != "" && (
-            <div className="card-badge  bg-secondary">{product.badge}</div>
-          )}
-
           <div className="card-title">{product.name}</div>
           <p className="card-description">{product.desc}</p>
         </div>
         <div className="card-footer">
-          <div className="col">
-            <div className="row items-center gap-05">
-              <h4 className="o-70 font-semibold">Price</h4>
-              <h4 className="text-md font-medium">
-                <span className="line-through mr-1 text-sm o-90">
-                  ₹ {product.price}
-                </span>
-                ₹
-                {(
-                  product.price -
-                  product.price * (product.discount / 100)
-                ).toFixed(0)}
-              </h4>
-            </div>
-            <div className="row items-center gap-025">
-              <RatingBar ratings={parseInt(product.ratings)} />
-              <h4 className="mr-1 text-sm o-90">{product.ratings}</h4>
-            </div>
+          <div className="row items-center gap-05">
+            <h4 className="o-70 font-semibold">Price</h4>
+            <h4 className="text-md font-medium">₹ {product.price}</h4>
           </div>
           <div className="card-actions">
             <button
@@ -101,4 +80,4 @@ const ProductCard = ({ product }) => {
   );
 };
 
-export default ProductCard;
+export default WishListProductCard;

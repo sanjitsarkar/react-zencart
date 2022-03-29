@@ -1,1 +1,23 @@
-/* No CSS *//*# sourceMappingURL=WishListPage.css.map */
+/* WishList Page */
+.wishlist-wrapper {
+  top: 20vh;
+  position: relative;
+}
+
+.wishlist-grid {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.wishlist-grid .card {
+  width: 16rem;
+}
+/*# sourceMappingURL=WishListPage.css.map */

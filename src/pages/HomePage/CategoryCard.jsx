@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 const CategoryCard = ({ img, title, to = "/products" }) => {
   return (
     <div className="card w-48">
@@ -12,9 +12,9 @@ const CategoryCard = ({ img, title, to = "/products" }) => {
         </div>
         <div className="card-footer">
           <div className="row gap-1 items-center w-full ">
-            <a href={to} id="browse-more-btn" className=" btn btn-dark">
+            <Link to={to} id="browse-more-btn" className=" btn btn-dark">
               Browse More
-            </a>
+            </Link>
             <button className=" btn-round-md bg-pink text-light">
               <i className="fa fa-heart"></i>
             </button>

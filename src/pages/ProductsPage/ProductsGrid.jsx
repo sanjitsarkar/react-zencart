@@ -24,7 +24,7 @@ const ProductsGrid = ({ toggleFilter }) => {
         {!products.loading &&
           products.data.length > 0 &&
           products.data.map((product) => (
-            <ProductCard {...product} key={product._id} />
+            <ProductCard product={product} key={product._id} />
           ))}
         {!products.loading && !products.data.length && (
           <h4>No Products Available</h4>
