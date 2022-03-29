@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Header from "../../components/Header";
-import Layout from "../../components/Layout";
 import { FiltersProvider } from "../../context/FilterContext";
 import { ProductsProvider } from "../../context/ProductsContext";
 import FilterSection from "./FilterSection";
@@ -9,7 +8,6 @@ import "./ProductsPage.css";
 const ProductsPage = () => {
   const [showFilter, setShowFilter] = useState(false);
   const toggleFilter = () => {
-    console.log(showFilter);
     setShowFilter(!showFilter);
   };
   return (

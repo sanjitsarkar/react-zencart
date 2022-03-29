@@ -2,7 +2,7 @@ import React from "react";
 import { useFilter } from "../../context/FilterContext";
 
 const FilterSection = ({ showFilter }) => {
-  const [filters, setFilters, handleCategories, handleBrands, resetFilters] =
+  const { filters, setFilters, handleCategories, handleBrands, resetFilters } =
     useFilter();
 
   return (
@@ -15,7 +15,7 @@ const FilterSection = ({ showFilter }) => {
         <div className="pr-1 row justify-between">
           <h3 className="text-lg">Filter</h3>
           <button
-            className="text-lg pointer btn-secondary"
+            className="text-sm pointer btn-secondary w-auto"
             onClick={resetFilters}
             type="reset"
           >
