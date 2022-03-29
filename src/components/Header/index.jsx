@@ -62,7 +62,7 @@ const Header = () => {
                 <Link to="/cart">
                   <div className="badge-holder">
                     <i className="fa fa-shopping-cart grid place-content-center w-12 h-12 bg-light p-2 br-full text-dark"></i>
-                    <span className="badge badge-dark">{cart.length}</span>
+                    <span className="badge badge-dark">{cart.data.length}</span>
                   </div>
                 </Link>
               </li>

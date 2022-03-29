@@ -2,16 +2,21 @@ import axios from "axios";
 import React, { useState, createContext, useContext, useEffect } from "react";
 import { useAuth } from "./AuthContext";
 const CartContext = createContext();
+const initialState = {
+  loading: true,
+  data: [],
+  error: "",
+};
 const CartProvider = ({ children }) => {
   const { user, isLoggedIn, signUp, logIn, logOut } = useAuth();
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(initialState);
   const addToCart = (product) => {
     console.log("product", product);
     if (!isLoggedIn) {
       console.log("You need to login to add product to cart");
       return;
     }
-    if (cart.find((item) => item._id === product._id)) {
+    if (cart.data.find((item) => item._id === product._id)) {
       axios
         .post(
           `/api/user/cart/${product._id}`,
@@ -25,9 +30,11 @@ const CartProvider = ({ children }) => {
           }
         )
         .then((res) => {
-          setCart(res.data.cart);
+          setCart({ loading: false, data: res.data.cart, error: "" });
         })
-        .catch((err) => {});
+        .catch((err) => {
+          setCart({ loading: false, data: [], error: err.message });
+        });
     } else {
       axios
         .post(
@@ -40,9 +47,11 @@ const CartProvider = ({ children }) => {
           }
         )
         .then((res) => {
-          setCart(res.data.cart);
+          setCart({ loading: false, data: res.data.cart, error: "" });
         })
-        .catch((err) => {});
+        .catch((err) => {
+          setCart({ loading: false, data: [], error: err.message });
+        });
     }
   };
   const decrementQuantity = (id, quantity) => {
@@ -63,9 +72,11 @@ const CartProvider = ({ children }) => {
         }
       )
       .then((res) => {
-        setCart(res.data.cart);
+        setCart({ loading: false, data: res.data.cart, error: "" });
       })
-      .catch((err) => {});
+      .catch((err) => {
+        setCart({ loading: false, data: [], error: err.message });
+      });
   };
   const removeFromCart = (id) => {
     axios
@@ -73,9 +84,11 @@ const CartProvider = ({ children }) => {
         headers: { authorization: localStorage.getItem("token") },
       })
       .then((res) => {
-        setCart(res.data.cart);
+        setCart({ loading: false, data: res.data.cart, error: "" });
       })
-      .catch((err) => {});
+      .catch((err) => {
+        setCart({ loading: false, data: [], error: err.message });
+      });
   };
   const clearCart = () => {
     setCart([]);
@@ -86,9 +99,11 @@ const CartProvider = ({ children }) => {
         headers: { authorization: localStorage.getItem("token") },
       })
       .then((res) => {
-        setCart(res.data.cart);
+        setCart({ loading: false, data: res.data.cart, error: "" });
       })
-      .catch((err) => {});
+      .catch((err) => {
+        setCart({ loading: false, data: [], error: err.message });
+      });
   }, []);
 
   return (
