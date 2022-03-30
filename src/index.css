@@ -33,4 +33,10 @@ form.form {
     padding: 1rem;
   }
 }
+
+#toast {
+  right: 1rem;
+  top: 16vh;
+  left: auto;
+}
 /*# sourceMappingURL=index.css.map */

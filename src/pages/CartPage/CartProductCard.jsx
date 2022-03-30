@@ -3,7 +3,7 @@ import { useCart } from "../../context/CartContext";
 import { useWishList } from "../../context/WishListContext";
 
 const CartProductCard = ({ product }) => {
-  const { addToCart, decrementQuantity, removeFromCart } = useCart();
+  const { incrementQuantity, decrementQuantity, removeFromCart } = useCart();
   const { toggleWishList, isAlreadyInWishList } = useWishList();
   const [isInWishList, setIsInWishList] = useState(
     isAlreadyInWishList(product._id)
@@ -38,7 +38,7 @@ const CartProductCard = ({ product }) => {
           <div className="card-actions justify-between">
             <button
               className="btn btn-round-md btn-dark"
-              onClick={() => addToCart(product)}
+              onClick={() => incrementQuantity(product._id)}
             >
               <i className="fa fa-add"></i>
             </button>

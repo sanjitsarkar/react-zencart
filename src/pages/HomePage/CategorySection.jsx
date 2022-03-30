@@ -4,7 +4,7 @@ import useCategory from "../../hooks/useCategory";
 import CategoryCard from "./CategoryCard";
 
 const CategorySection = () => {
-  const [categories] = useCategory();
+  const [categories] = useCategory({});
 
   return (
     <section className="section-category p-5  mr-0 pr-4 mt-0 pt-0">
