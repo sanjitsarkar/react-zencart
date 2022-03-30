@@ -1,7 +1,10 @@
 import React from "react";
+import { useCart } from "../../context/CartContext";
 import RatingBar from "./RatingBar";
 
 const ProductCard = ({ product }) => {
+  const { addToCart } = useCart();
+
   return (
     <div className="card  card-dark  bx-sh-light-3">
       {!product.inStock && <h1 className="outofstock">Out Of Stock</h1>}
@@ -42,7 +45,15 @@ const ProductCard = ({ product }) => {
             </div>
           </div>
           <div className="card-actions">
-            <button className="btn btn-round-md btn-dark">
+            <button
+              className="btn btn-round-md btn-dark"
+              onClick={() =>
+                product.inStock &&
+                addToCart({
+                  ...product,
+                })
+              }
+            >
               <i className="fa fa-shopping-cart"></i>
             </button>
             <button className="btn-round-md btn bg-light text-pink">

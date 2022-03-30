@@ -1,0 +1,83 @@
+/* Cart Management Styling Section */
+.cart-wrapper {
+  padding-top: 20vh;
+  height: 100vh;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.cart-products {
+  padding-bottom: 5vh;
+}
+
+.apply-btn {
+  padding: 0.75rem 1rem;
+}
+
+.cart-price-details {
+  background-color: var(--dark-black);
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+
+.cart-product-card {
+  width: 50rem;
+}
+
+.cart-product-card .card-header {
+  display: -ms-grid;
+  display: grid;
+  place-content: center;
+}
+
+.coupon-section input {
+  color: white;
+}
+
+#cart-image {
+  padding: 1rem;
+  max-height: 10rem;
+  -o-object-fit: contain;
+  object-fit: contain;
+}
+
+@media only screen and (max-width: 935px) {
+  .cart-products {
+    -webkit-box-ordinal-group: 3;
+    -ms-flex-order: 2;
+    order: 2;
+  }
+  .cart-product-card {
+    width: 100%;
+  }
+  .cart-price-details {
+    -webkit-box-ordinal-group: 2;
+    -ms-flex-order: 1;
+    order: 1;
+  }
+}
+
+@media only screen and (max-width: 580px) {
+  .coupon-section input,
+  button {
+    width: 100%;
+  }
+  .card-horizontal .card-header {
+    min-width: 100%;
+  }
+}
+
+@media only screen and (max-width: 580px) {
+  .cart-products {
+    -ms-flex-line-pack: center;
+    align-content: center;
+  }
+}
+
+@media only screen and (max-width: 380px) {
+  .cart-section {
+    padding: 1rem;
+  }
+}
+/*# sourceMappingURL=CartPage.css.map */

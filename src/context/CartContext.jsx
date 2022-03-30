@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState, createContext, useContext, useEffect } from "react";
 import { useAuth } from "./AuthContext";
+import { useToast } from "./ToastContext";
 const CartContext = createContext();
 const initialState = {
   loading: true,
@@ -8,6 +9,7 @@ const initialState = {
   error: "",
 };
 const CartProvider = ({ children }) => {
+  const { setToast } = useToast();
   const { isLoggedIn } = useAuth();
   const [cart, setCart] = useState(initialState);
   const addToCart = (product) => {
@@ -15,24 +17,11 @@ const CartProvider = ({ children }) => {
       return;
     }
     if (cart.data.find((item) => item._id === product._id)) {
-      axios
-        .post(
-          `/api/user/cart/${product._id}`,
-          JSON.stringify({
-            action: {
-              type: "increment",
-            },
-          }),
-          {
-            headers: { authorization: localStorage.getItem("token") },
-          }
-        )
-        .then((res) => {
-          setCart({ loading: false, data: res.data.cart, error: "" });
-        })
-        .catch((err) => {
-          setCart({ loading: false, data: [], error: err.message });
-        });
+      setToast({
+        show: true,
+        content: `Item already added to the cart`,
+        type: "info",
+      });
     } else {
       axios
         .post(
@@ -45,12 +34,37 @@ const CartProvider = ({ children }) => {
           }
         )
         .then((res) => {
+          setToast({
+            show: true,
+            content: `Item added to cart`,
+            type: "info",
+          });
           setCart({ loading: false, data: res.data.cart, error: "" });
         })
         .catch((err) => {
           setCart({ loading: false, data: [], error: err.message });
         });
     }
+  };
+  const incrementQuanity = (id) => {
+    axios
+      .post(
+        `/api/user/cart/${id}`,
+        JSON.stringify({
+          action: {
+            type: "increment",
+          },
+        }),
+        {
+          headers: { authorization: localStorage.getItem("token") },
+        }
+      )
+      .then((res) => {
+        setCart({ loading: false, data: res.data.cart, error: "" });
+      })
+      .catch((err) => {
+        setCart({ loading: false, data: [], error: err.message });
+      });
   };
   const decrementQuantity = (id, quantity) => {
     if (quantity === 1) {
@@ -82,6 +96,11 @@ const CartProvider = ({ children }) => {
         headers: { authorization: localStorage.getItem("token") },
       })
       .then((res) => {
+        setToast({
+          show: true,
+          content: `Item removed from cart`,
+          type: "error",
+        });
         setCart({ loading: false, data: res.data.cart, error: "" });
       })
       .catch((err) => {
@@ -110,6 +129,7 @@ const CartProvider = ({ children }) => {
         cart,
         setCart,
         addToCart,
+        incrementQuanity,
         decrementQuantity,
         removeFromCart,
         clearCart,

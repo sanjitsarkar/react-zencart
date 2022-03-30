@@ -1,20 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useCart } from "../../context/CartContext";
-import { useWishList } from "../../context/WishListContext";
 
 const CartProductCard = ({ product }) => {
-  const { addToCart, decrementQuantity, removeFromCart } = useCart();
-  const { toggleWishList, isAlreadyInWishList } = useWishList();
-  const [isInWishList, setIsInWishList] = useState(
-    isAlreadyInWishList(product._id)
-  );
-  useEffect(() => {
-    if (isAlreadyInWishList(product._id)) {
-      setIsInWishList(() => true);
-    } else {
-      setIsInWishList(() => false);
-    }
-  }, []);
+  const { incrementQuanity, decrementQuantity, removeFromCart } = useCart();
+
   return (
     <div className="cart-product-card card card-horizontal card-dark">
       <div className="card-header">
@@ -38,7 +27,7 @@ const CartProductCard = ({ product }) => {
           <div className="card-actions justify-between">
             <button
               className="btn btn-round-md btn-dark"
-              onClick={() => addToCart(product)}
+              onClick={() => incrementQuanity(product._id)}
             >
               <i className="fa fa-add"></i>
             </button>
@@ -56,17 +45,7 @@ const CartProductCard = ({ product }) => {
             >
               <i className="fa fa-trash"></i>
             </button>
-            <button
-              className={` btn-round-md btn ${
-                isInWishList ? "bg-pink text-light" : "bg-light text-pink"
-              }`}
-              onClick={() => {
-                setIsInWishList(() => !isInWishList);
-                toggleWishList({
-                  ...product,
-                });
-              }}
-            >
+            <button className="btn-round-md btn bg-light text-pink">
               <i className="fa fa-heart"></i>
             </button>
           </div>
