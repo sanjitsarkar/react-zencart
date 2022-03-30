@@ -1,19 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Header from "../../components/Header";
 import { useAuth } from "../../context/AuthContext";
 
 const SignupPage = () => {
-  const {
-    user,
-    isLoggedIn,
-    signUp,
-    logIn,
-    logOut,
-    loginCred,
-    setLoginCred,
-    signupCred,
-    setSignupCred,
-  } = useAuth();
+  const { signUp, signupCred, setSignupCred } = useAuth();
 
   return (
     <>
@@ -99,9 +90,9 @@ const SignupPage = () => {
             </div>
           </div>
           <button className="btn btn-dark w-full text-lg mb-2">Signup</button>
-          <a href="login.html" className="text-dark-4 block">
+          <Link to="/login" className="text-dark-4 block">
             Already have an account?
-          </a>
+          </Link>
         </form>
       </main>
     </>

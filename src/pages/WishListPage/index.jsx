@@ -1,11 +1,13 @@
 import React from "react";
+import Header from "../../components/Header";
 import Layout from "../../components/Layout";
 
 const WishListPage = () => {
   return (
-    <Layout>
-      <div>WishListPage</div>
-    </Layout>
+    <>
+      <Header />
+      <h1>WishListPage</h1>
+    </>
   );
 };
 

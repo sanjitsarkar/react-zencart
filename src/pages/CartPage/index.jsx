@@ -7,10 +7,7 @@ const CartPage = () => {
   return (
     <>
       <Header />
-      <main className="cart-wrapper h-full l-0 r-0 w-full relative text-light">
-        <ToTopButton />
-        <CartSection />
-      </main>
+      <h1>Cart Page</h1>
     </>
   );
 };

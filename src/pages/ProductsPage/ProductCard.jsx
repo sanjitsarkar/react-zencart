@@ -15,14 +15,7 @@ const ProductCard = ({
   badge,
   inStock = true,
 }) => {
-  const {
-    cart,
-    setCart,
-    addToCart,
-    decrementQuantity,
-    removeFromCart,
-    clearCart,
-  } = useCart();
+  const { addToCart } = useCart();
   return (
     <div className="card  card-dark  bx-sh-light-3">
       {!inStock && <h1 className="outofstock">Out Of Stock</h1>}
