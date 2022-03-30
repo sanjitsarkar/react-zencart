@@ -14,7 +14,11 @@ const CartProvider = ({ children }) => {
   const [cart, setCart] = useState(initialState);
   const addToCart = (product) => {
     if (!isLoggedIn) {
-      return;
+      setToast({
+        show: true,
+        content: "Please login to add item to cart",
+        type: "warning",
+      });
     }
     if (cart.data.find((item) => item._id === product._id)) {
       setToast({

@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { useAuth } from "../../context/AuthContext";
 import { useCart } from "../../context/CartContext";
 import { useWishList } from "../../context/WishListContext";
 import RatingBar from "./RatingBar";
 
 const ProductCard = ({ product }) => {
   const { addToCart } = useCart();
-  const { toggleWishList, isAlreadyInWishList } = useWishList();
+  const { wishList, toggleWishList, isAlreadyInWishList } = useWishList();
+  const { isLoggedIn } = useAuth();
   const [isInWishList, setIsInWishList] = useState(false);
   useEffect(() => {
+    console.log("wishlist", wishList);
     if (isAlreadyInWishList(product._id)) {
       setIsInWishList(true);
     } else {
@@ -67,7 +70,9 @@ const ProductCard = ({ product }) => {
             </button>
             <button
               className={` btn-round-md btn ${
-                isInWishList ? "bg-pink text-light" : "bg-light text-pink"
+                isLoggedIn && isInWishList
+                  ? "bg-pink text-light"
+                  : "bg-light text-pink"
               }`}
               onClick={() => {
                 setIsInWishList(() => !isInWishList);

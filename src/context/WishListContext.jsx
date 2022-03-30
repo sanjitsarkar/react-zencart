@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState, createContext, useContext, useEffect } from "react";
 import { useAuth } from "./AuthContext";
+import { useToast } from "./ToastContext";
 const initialState = {
   loading: true,
   data: [],
@@ -10,8 +11,14 @@ const WishListContext = createContext();
 const WishListProvider = ({ children }) => {
   const { isLoggedIn } = useAuth();
   const [wishList, setWishList] = useState(initialState);
+  const { setToast } = useToast();
   const toggleWishList = (product) => {
     if (!isLoggedIn) {
+      setToast({
+        show: true,
+        content: "Please login to add item to wishlist",
+        type: "warning",
+      });
       return;
     }
     if (wishList.data.find((item) => item._id === product._id)) {
@@ -28,6 +35,11 @@ const WishListProvider = ({ children }) => {
           }
         )
         .then((res) => {
+          setToast({
+            show: true,
+            content: `Item added to wishlist`,
+            type: "info",
+          });
           setWishList({ loading: false, data: res.data.wishlist, error: "" });
         })
         .catch((err) => {
@@ -42,6 +54,11 @@ const WishListProvider = ({ children }) => {
         headers: { authorization: localStorage.getItem("token") },
       })
       .then((res) => {
+        setToast({
+          show: true,
+          content: `Item removed from wishlist`,
+          type: "error",
+        });
         setWishList({ loading: false, data: res.data.wishlist, error: "" });
       })
       .catch((err) => {
