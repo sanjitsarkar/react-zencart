@@ -3,16 +3,13 @@ import useCategory from "../../hooks/useCategory";
 import CategoryCard from "./CategoryCard";
 
 const CategorySection = () => {
-  const [categories, setCategories] = useCategory({});
-  useEffect(() => {
-    console.log(categories);
-  }, [categories]);
+  const [categories] = useCategory({});
 
   return (
     <section className="section-category p-5  mr-0 pr-4 mt-0 pt-0">
       <h1 className="text-2xl mb-3 section-title">Shop By Category</h1>
       <div className="row gap-1 ">
-        {categories.laoding && <h1>Loading...</h1>}
+        {categories.loading && <h1>Loading...</h1>}
         {!categories.loading && categories.data.length ? (
           categories.data
             .slice(0, 6)
