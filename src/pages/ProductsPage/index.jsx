@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Header from "../../components/Header";
+import ToTopButton from "../../components/ToTopButton";
 import { FiltersProvider } from "../../context/FilterContext";
 import { ProductsProvider } from "../../context/ProductsContext";
 import FilterSection from "./FilterSection";
