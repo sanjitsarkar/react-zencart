@@ -68,14 +68,7 @@ const WishListProvider = ({ children }) => {
   const clearWishList = () => {
     setWishList([]);
   };
-  const isAlreadyInWishList = (id) => {
-    wishList.data.forEach((item) => {
-      if (item._id === id) {
-        return true;
-      }
-    });
-    return false;
-  };
+
   useEffect(() => {
     axios
       .get("/api/user/wishlist", {
@@ -95,7 +88,6 @@ const WishListProvider = ({ children }) => {
         wishList,
         setWishList,
         toggleWishList,
-        isAlreadyInWishList,
         clearWishList,
       }}
     >

@@ -4,16 +4,12 @@ import { useWishList } from "../../context/WishListContext";
 
 const CartProductCard = ({ product }) => {
   const { incrementQuantity, decrementQuantity, removeFromCart } = useCart();
-  const { toggleWishList, isAlreadyInWishList } = useWishList();
-  const [isInWishList, setIsInWishList] = useState(
-    isAlreadyInWishList(product._id)
-  );
+  const { wishList, toggleWishList } = useWishList();
+  const [isInWishList, setIsInWishList] = useState(false);
   useEffect(() => {
-    if (isAlreadyInWishList(product._id)) {
-      setIsInWishList(() => true);
-    } else {
-      setIsInWishList(() => false);
-    }
+    wishList.data.forEach((element) => {
+      if (element._id == product._id) setIsInWishList(() => true);
+    });
   }, []);
   return (
     <div className="cart-product-card card card-horizontal card-dark">

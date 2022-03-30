@@ -50,7 +50,7 @@ const CartProvider = ({ children }) => {
         });
     }
   };
-  const incrementQuanity = (id) => {
+  const incrementQuantity = (id) => {
     axios
       .post(
         `/api/user/cart/${id}`,
@@ -133,7 +133,7 @@ const CartProvider = ({ children }) => {
         cart,
         setCart,
         addToCart,
-        incrementQuanity,
+        incrementQuantity,
         decrementQuantity,
         removeFromCart,
         clearCart,

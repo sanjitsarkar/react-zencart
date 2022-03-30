@@ -3,15 +3,17 @@ import { useCart } from "../../context/CartContext";
 import { useWishList } from "../../context/WishListContext";
 
 const WishListProductCard = ({ product }) => {
-  const { addToCart } = useCart();
-  const { toggleWishList, isAlreadyInWishList } = useWishList();
+  const { cart, addToCart } = useCart();
+  const { wishList, toggleWishList } = useWishList();
   const [isInWishList, setIsInWishList] = useState(false);
+  const [isInCart, setIsInCart] = useState(false);
   useEffect(() => {
-    if (isAlreadyInWishList(product._id)) {
-      setIsInWishList(true);
-    } else {
-      setIsInWishList(false);
-    }
+    wishList.data.forEach((element) => {
+      if (element._id == product._id) setIsInWishList(() => true);
+    });
+    cart.data.forEach((element) => {
+      if (element._id == product._id) setIsInCart(() => true);
+    });
   }, []);
   return (
     <div className="card card-sm card-dark">
@@ -34,13 +36,16 @@ const WishListProductCard = ({ product }) => {
           </div>
           <div className="card-actions">
             <button
-              className="btn btn-round-md btn-dark"
-              onClick={() =>
+              className={`btn btn-round-md ${
+                !isInCart ? "btn-light" : "btn-dark"
+              }`}
+              onClick={() => {
+                setIsInCart(true);
                 product.inStock &&
-                addToCart({
-                  ...product,
-                })
-              }
+                  addToCart({
+                    ...product,
+                  });
+              }}
             >
               <i className="fa fa-shopping-cart"></i>
             </button>
