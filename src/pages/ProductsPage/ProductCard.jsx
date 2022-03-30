@@ -60,12 +60,11 @@ const ProductCard = ({ product }) => {
           <div className="card-actions">
             <button
               className={`btn btn-round-md ${
-                !isInCart ? "btn-light" : "btn-dark"
+                isLoggedIn && !isInCart ? "btn-light" : "btn-dark"
               }`}
               onClick={() => {
-                setIsInCart(true);
+                isLoggedIn && setIsInCart(true);
                 product.inStock &&
-                  isLoggedIn &&
                   addToCart({
                     ...product,
                   });
@@ -80,7 +79,7 @@ const ProductCard = ({ product }) => {
                   : "bg-light text-pink"
               }`}
               onClick={() => {
-                setIsInWishList(() => !isInWishList);
+                isLoggedIn && setIsInWishList(() => !isInWishList);
                 toggleWishList({
                   ...product,
                 });
