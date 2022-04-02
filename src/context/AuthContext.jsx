@@ -13,6 +13,7 @@ const AuthProvider = ({ children }) => {
   const { setToast } = useToast();
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [token, setToken] = useState(localStorage?.getItem("token"));
   const [user, setUser] = useState(initialState);
   const [loginCred, setLoginCred] = useState({ email: "", password: "" });
   const [signupCred, setSignupCred] = useState({
@@ -80,6 +81,7 @@ const AuthProvider = ({ children }) => {
           type: "info",
         });
         localStorage.setItem("token", res.data.encodedToken);
+
         setUser({ loading: false, data: res.data.foundUser, error: "" });
         setIsLoggedIn(true);
       })
@@ -114,12 +116,14 @@ const AuthProvider = ({ children }) => {
   };
   useEffect(() => {
     if (isLoggedIn) {
+      setToken(localStorage.getItem("token"));
       localStorage.setItem("user", JSON.stringify(user));
       navigate("/", { replace: true });
     }
   }, [isLoggedIn]);
   useEffect(() => {
     if (localStorage.getItem("token")) {
+      setToken(localStorage.getItem("token"));
       setIsLoggedIn(true);
       setUser(JSON.parse(localStorage.getItem("user")));
       navigate("/", { replace: true });
@@ -128,6 +132,7 @@ const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider
       value={{
+        token,
         user,
         isLoggedIn,
         signUp,
