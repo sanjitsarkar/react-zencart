@@ -1,7 +1,16 @@
 import React from "react";
-
+import "./Loader.css";
 const Loader = () => {
-  return <div className="text-center">Loading...</div>;
+  return (
+    <div className="w-full h-full grid place-content-center">
+      <div class="loader">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  );
 };
 
 export default Loader;

@@ -23,3 +23,5 @@ yarn-error.log*
 
 *.scss
 *.css.map
+node_modules/
+node_modules/
