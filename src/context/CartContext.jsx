@@ -10,7 +10,7 @@ const initialState = {
 };
 const CartProvider = ({ children }) => {
   const { setToast } = useToast();
-  const { isLoggedIn } = useAuth();
+  const { token, isLoggedIn } = useAuth();
   const [cart, setCart] = useState(initialState);
   const addToCart = (product) => {
     if (!isLoggedIn) {
@@ -30,7 +30,7 @@ const CartProvider = ({ children }) => {
             product,
           }),
           {
-            headers: { authorization: localStorage.getItem("token") },
+            headers: { authorization: token },
           }
         )
         .then((res) => {
@@ -56,7 +56,7 @@ const CartProvider = ({ children }) => {
           },
         }),
         {
-          headers: { authorization: localStorage.getItem("token") },
+          headers: { authorization: token },
         }
       )
       .then((res) => {
@@ -80,7 +80,7 @@ const CartProvider = ({ children }) => {
           },
         }),
         {
-          headers: { authorization: localStorage.getItem("token") },
+          headers: { authorization: token },
         }
       )
       .then((res) => {
@@ -93,7 +93,7 @@ const CartProvider = ({ children }) => {
   const removeFromCart = (id) => {
     axios
       .delete(`/api/user/cart/${id}`, {
-        headers: { authorization: localStorage.getItem("token") },
+        headers: { authorization: token },
       })
       .then((res) => {
         setToast({
@@ -113,7 +113,7 @@ const CartProvider = ({ children }) => {
   useEffect(() => {
     axios
       .get("/api/user/cart", {
-        headers: { authorization: localStorage.getItem("token") },
+        headers: { authorization: token },
       })
       .then((res) => {
         setCart({ loading: false, data: res.data.cart, error: "" });
