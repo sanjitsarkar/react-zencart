@@ -84,13 +84,13 @@ const AuthProvider = ({ children }) => {
         setIsLoggedIn(true);
       })
       .catch((err) => {
-        if (err.message.contains("401"))
+        if (err.message.slice(err.message.lastIndexOf(" ") + 1) === "401")
           setToast({
             show: true,
             content: "Wrong Password",
             type: "error",
           });
-        if (err.message.contains("402"))
+        else if (err.message.slice(err.message.lastIndexOf(" ") + 1) === "404")
           setToast({
             show: true,
             content: "Email is not registered yet",
