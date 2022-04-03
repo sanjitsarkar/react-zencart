@@ -34,6 +34,9 @@ header nav ul.left .input-box {
   .search-icon {
     visibility: visible;
   }
+  .input-box {
+    display: none;
+  }
 }
 
 @media only screen and (max-width: 870px) {

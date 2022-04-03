@@ -16,7 +16,7 @@ const WishListProductCard = ({ product }) => {
     });
   }, []);
   return (
-    <div className="card card-sm card-dark">
+    <div className="card card-sm card-dark" id="product-card">
       <div className="card-header">
         <img
           src={product.images[0]}

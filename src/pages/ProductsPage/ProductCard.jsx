@@ -19,7 +19,7 @@ const ProductCard = ({ product }) => {
     });
   }, []);
   return (
-    <div className="card  card-dark  bx-sh-light-3">
+    <div className="card  card-dark  bx-sh-light-3" id="product-card">
       {!product.inStock && <h1 className="outofstock">Out Of Stock</h1>}
       <div className="card-header">
         <img
