@@ -22,7 +22,6 @@ const ProductsGrid = ({ toggleFilter }) => {
       <div className="products-grid gap-1">
         {products.loading && <Loader />}
         {!products.loading &&
-          products.data.length > 0 &&
           products.data.map((product) => (
             <ProductCard product={product} key={product._id} />
           ))}

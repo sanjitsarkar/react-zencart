@@ -1,12 +1,14 @@
 import axios from "axios";
-import React, { useEffect, useState, createContext, useContext } from "react";
+import React, { useEffect, useReducer, createContext, useContext } from "react";
+import { initialState, reducer } from "../reducers/reducer";
+import {
+  ACTION_TYPE_FAILURE,
+  ACTION_TYPE_SUCCESS,
+  ACTION_TYPE_LOADING,
+} from "../utils";
 const ProductsContext = createContext();
 const ProductsProvider = ({ children }) => {
-  const [products, setProducts] = useState({
-    loading: true,
-    data: [],
-    error: "",
-  });
+  const [state, dispatch] = useReducer(reducer, initialState);
   const fetchProducts = async () => {
     try {
       const res = await axios.get("/api/products");
@@ -16,13 +18,20 @@ const ProductsProvider = ({ children }) => {
     }
   };
   const searchProducts = () => {
+    dispatch({ type: ACTION_TYPE_LOADING });
     axios
       .get("/api/products")
       .then((res) => {
-        setProducts({ loading: false, data: res.data.products, error: "" });
+        dispatch({
+          type: ACTION_TYPE_SUCCESS,
+          payload: res.data.products,
+        });
       })
       .catch((err) => {
-        setProducts({ loading: false, data: [], error: err.message });
+        dispatch({
+          type: ACTION_TYPE_FAILURE,
+          payload: err.message,
+        });
       });
   };
   useEffect(() => {
@@ -30,7 +39,12 @@ const ProductsProvider = ({ children }) => {
   }, []);
   return (
     <ProductsContext.Provider
-      value={{ products, setProducts, searchProducts, fetchProducts }}
+      value={{
+        products: state,
+        setProducts: dispatch,
+        searchProducts,
+        fetchProducts,
+      }}
     >
       {children}
     </ProductsContext.Provider>
