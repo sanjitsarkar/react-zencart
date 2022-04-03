@@ -11,7 +11,7 @@ const initialState = {
 const CartProvider = ({ children }) => {
   const { setToast } = useToast();
   const { isLoggedIn } = useAuth();
-  const [cart, setCart] = useState(initialState);
+  const [state, dispatch] = useReducer(initialState);
   const addToCart = (product) => {
     if (!isLoggedIn) {
       setToast({
