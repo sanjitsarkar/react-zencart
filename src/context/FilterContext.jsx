@@ -6,16 +6,17 @@ import {
 } from "../utils";
 import { useProduct } from "./ProductsContext";
 const initialState = {
-  price: 5000,
+  price: 12500,
   categories: [],
   brands: [],
   sortBy: "price",
 };
 const FiltersContext = createContext();
 const FiltersProvider = ({ children }) => {
-  const { products, setProducts, searchProducts, fetchProducts } = useProduct();
+  const { setProducts, searchProducts, fetchProducts } = useProduct();
   const [filters, setFilters] = useState(initialState);
   const resetFilters = () => {
+    setFilters(initialState);
     searchProducts();
   };
   const handleCategories = (e) => {
@@ -60,7 +61,6 @@ const FiltersProvider = ({ children }) => {
         fetchedProducts = res.data;
         let data = [];
         if (filters.brands.length) {
-          console.log(filters.brands);
           data = fetchedProducts.filter(
             (product) =>
               filters.brands && filters.brands.includes(product.brand)
@@ -80,7 +80,6 @@ const FiltersProvider = ({ children }) => {
           fetchedProducts = data;
         }
         if (filters.rating) {
-          console.log(filters.rating);
           data = fetchedProducts.filter((product) => {
             return product.rating >= filters.rating;
           });

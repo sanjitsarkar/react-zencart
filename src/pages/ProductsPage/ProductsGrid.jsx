@@ -1,16 +1,16 @@
 import React, { useEffect } from "react";
 import Loader from "../../components/Loader";
+import { useFilter } from "../../context/FilterContext";
 import { useProduct } from "../../context/ProductsContext";
 
 import ProductCard from "./ProductCard";
 
 const ProductsGrid = ({ toggleFilter }) => {
   const { products, searchProducts } = useProduct();
-  // useEffect(() => {
-  //   console.log("pro", products);
-  //   // if (products.data !== undefined && products.data.length === 0)
-  //   // searchProducts();
-  // }, [products]);
+  const { resetFilters } = useFilter();
+  useEffect(() => {
+    resetFilters();
+  }, []);
   return (
     <section className="products overflow-hidden overflow-y-auto ">
       <div className="row justify-between  mb-3 gap-05 w-full">
