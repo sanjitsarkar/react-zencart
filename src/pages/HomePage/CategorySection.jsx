@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import React from "react";
-=======
-import React, { useEffect, useState, useReducer } from "react";
->>>>>>> pages/home
 import Loader from "../../components/Loader";
 import useCategory from "../../hooks/useCategory";
 import CategoryCard from "./CategoryCard";

@@ -9,14 +9,12 @@ const initialState = {
   price: 5000,
   categories: [],
   brands: [],
-  rating: 4,
   sortBy: "price",
 };
 const FiltersContext = createContext();
 const FiltersProvider = ({ children }) => {
-  const { setProducts, searchProducts, fetchProducts } = useProduct();
+  const { products, setProducts, searchProducts, fetchProducts } = useProduct();
   const [filters, setFilters] = useState(initialState);
-
   const resetFilters = () => {
     searchProducts();
   };
@@ -54,36 +52,52 @@ const FiltersProvider = ({ children }) => {
           };
         });
   };
-  // useEffect(() => {
-  //   setProducts({ type: ACTION_TYPE_LOADING });
-  //   let fetchedProducts = [];
-  //   fetchProducts()
-  //     .then((res) => {
-  //       fetchedProducts = res.data.filter((product) => {
-  //         if (filters.brands && filters.brands.includes(product.brand))
-  //           return true;
+  useEffect(() => {
+    setProducts({ type: ACTION_TYPE_LOADING, payload: [] });
+    let fetchedProducts = [];
+    fetchProducts()
+      .then((res) => {
+        fetchedProducts = res.data;
+        let data = [];
+        if (filters.brands.length) {
+          console.log(filters.brands);
+          data = fetchedProducts.filter(
+            (product) =>
+              filters.brands && filters.brands.includes(product.brand)
+          );
+          fetchedProducts = data;
+        }
+        if (filters.categories.length) {
+          data = fetchedProducts.filter((product) => {
+            return filters.categories.includes(product.categoryName);
+          });
+          fetchedProducts = data;
+        }
+        if (filters.price) {
+          data = fetchedProducts.filter((product) => {
+            return product.price <= filters.price;
+          });
+          fetchedProducts = data;
+        }
+        if (filters.rating) {
+          console.log(filters.rating);
+          data = fetchedProducts.filter((product) => {
+            return product.rating >= filters.rating;
+          });
+          fetchedProducts = data;
+        }
 
-  //         if (
-  //           filters.categories &&
-  //           filters.categories.includes(product.categoryName)
-  //         )
-  //           return true;
-  //         if (filters.price && product.price <= filters.price) return true;
-  //         if (filters.rating && product.rating >= filters.price) return true;
-  //         return false;
-  //       });
-  //       if (filters.sortBy === "price") {
-  //         fetchedProducts = fetchedProducts.sort((a, b) => a.price - b.price);
-  //       } else if (filters.sortBy === "-price") {
-  //         fetchedProducts = fetchedProducts.sort((a, b) => b.price - a.price);
-  //       }
-  //       console.log(fetchedProducts);
-  //       setProducts({ type: ACTION_TYPE_SUCCESS, data: fetchedProducts });
-  //     })
-  //     .catch((err) => {
-  //       setProducts({ type: ACTION_TYPE_FAILURE, payload: err.message });
-  //     });
-  // }, [filters]);
+        if (filters.sortBy === "price") {
+          fetchedProducts = fetchedProducts.sort((a, b) => a.price - b.price);
+        } else if (filters.sortBy === "-price") {
+          fetchedProducts = fetchedProducts.sort((a, b) => b.price - a.price);
+        }
+        setProducts({ type: ACTION_TYPE_SUCCESS, payload: fetchedProducts });
+      })
+      .catch((err) => {
+        setProducts({ type: ACTION_TYPE_FAILURE, payload: err.message });
+      });
+  }, [filters]);
   return (
     <FiltersContext.Provider
       value={{

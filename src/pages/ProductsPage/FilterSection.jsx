@@ -154,10 +154,10 @@ const FilterSection = ({ showFilter }) => {
             <span className="checkmark"></span>
           </label>
           <label className="checkbox-container">
-            Behringer
+            Beyerdynamic
             <input
               type="checkbox"
-              defaultValue="Behringer"
+              defaultValue="Beyerdynamic"
               onChange={handleBrands}
             />
             <span className="checkmark"></span>

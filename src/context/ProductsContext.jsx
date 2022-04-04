@@ -22,6 +22,7 @@ const ProductsProvider = ({ children }) => {
     axios
       .get("/api/products")
       .then((res) => {
+        console.log("res", res.data);
         dispatch({
           type: ACTION_TYPE_SUCCESS,
           payload: res.data.products,

@@ -1,9 +1,3 @@
-import {
-  ACTION_TYPE_FAILURE,
-  ACTION_TYPE_LOADING,
-  ACTION_TYPE_SUCCESS,
-} from "../utils";
-
 const initialState = {
   data: [],
   loading: true,
@@ -11,19 +5,18 @@ const initialState = {
 };
 const reducer = (state, action) => {
   switch (action.type) {
-    case ACTION_TYPE_LOADING:
+    case "LOADING":
+      return {
+        ...state,
+        loading: true,
+      };
+    case "SUCCESS":
       return {
         ...state,
         data: action.payload,
         loading: false,
       };
-    case ACTION_TYPE_SUCCESS:
-      return {
-        ...state,
-        data: action.payload,
-        loading: false,
-      };
-    case ACTION_TYPE_FAILURE:
+    case "FAILURE":
       return {
         ...state,
         error: action.payload,
