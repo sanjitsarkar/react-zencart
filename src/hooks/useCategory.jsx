@@ -1,9 +1,9 @@
 import axios from "axios";
-import React, { useEffect, useReducer, useState } from "react";
+import { useEffect, useState } from "react";
 
 const useCategory = () => {
   const [categories, setCategories] = useState({
-    laoding: true,
+    loading: true,
     data: [],
     error: "",
   });
@@ -12,11 +12,9 @@ const useCategory = () => {
     axios
       .get("/api/categories")
       .then((res) => {
-        console.log(res.data.categories);
         setCategories({ loading: false, data: res.data.categories, error: "" });
       })
       .catch((err) => {
-        console.log(err);
         setCategories({ loading: false, data: [], error: err.message });
       });
   }, []);
