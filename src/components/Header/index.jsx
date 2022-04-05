@@ -36,9 +36,6 @@ const Header = () => {
             navbar ? "show" : ""
           }`}
         >
-          <li>
-            <Link to="/">Home</Link>
-          </li>
           {!isLoggedIn && (
             <li>
               <Link to="/login" className="btn btn-primary">
