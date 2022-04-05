@@ -1,18 +1,27 @@
 import axios from "axios";
-import React, { useState, createContext, useContext, useEffect } from "react";
+import React, {
+  useState,
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+} from "react";
+import { initialState, reducer } from "../reducers/reducer";
+import {
+  ACTION_TYPE_FAILURE,
+  ACTION_TYPE_LOADING,
+  ACTION_TYPE_SUCCESS,
+} from "../utils";
 import { useAuth } from "./AuthContext";
 import { useToast } from "./ToastContext";
 const CartContext = createContext();
-const initialState = {
-  loading: true,
-  data: [],
-  error: "",
-};
+
 const CartProvider = ({ children }) => {
   const { setToast } = useToast();
   const { token, isLoggedIn } = useAuth();
-  const [cart, setCart] = useState(initialState);
+  const [cart, dispatchCart] = useReducer(reducer, initialState);
   const addToCart = (product) => {
+    dispatchCart({ type: ACTION_TYPE_LOADING });
     if (!isLoggedIn) {
       return;
     }
@@ -39,10 +48,10 @@ const CartProvider = ({ children }) => {
             content: `Item added to cart`,
             type: "info",
           });
-          setCart({ loading: false, data: res.data.cart, error: "" });
+          dispatchCart({ type: ACTION_TYPE_SUCCESS, payload: res.data.cart });
         })
         .catch((err) => {
-          setCart({ loading: false, data: [], error: err.message });
+          dispatchCart({ type: ACTION_TYPE_FAILURE, payload: err.message });
         });
     }
   };
@@ -60,10 +69,10 @@ const CartProvider = ({ children }) => {
         }
       )
       .then((res) => {
-        setCart({ loading: false, data: res.data.cart, error: "" });
+        dispatchCart({ type: ACTION_TYPE_SUCCESS, payload: res.data.cart });
       })
       .catch((err) => {
-        setCart({ loading: false, data: [], error: err.message });
+        dispatchCart({ type: ACTION_TYPE_FAILURE, payload: err.message });
       });
   };
   const decrementQuantity = (id, quantity) => {
@@ -84,10 +93,10 @@ const CartProvider = ({ children }) => {
         }
       )
       .then((res) => {
-        setCart({ loading: false, data: res.data.cart, error: "" });
+        dispatchCart({ type: ACTION_TYPE_SUCCESS, payload: res.data.cart });
       })
       .catch((err) => {
-        setCart({ loading: false, data: [], error: err.message });
+        dispatchCart({ type: ACTION_TYPE_FAILURE, payload: err.message });
       });
   };
   const removeFromCart = (id) => {
@@ -101,10 +110,10 @@ const CartProvider = ({ children }) => {
           content: `Item removed from cart`,
           type: "error",
         });
-        setCart({ loading: false, data: res.data.cart, error: "" });
+        dispatchCart({ type: ACTION_TYPE_SUCCESS, payload: res.data.cart });
       })
       .catch((err) => {
-        setCart({ loading: false, data: [], error: err.message });
+        dispatchCart({ type: ACTION_TYPE_FAILURE, payload: err.message });
       });
   };
   const clearCart = () => {
@@ -116,10 +125,10 @@ const CartProvider = ({ children }) => {
         headers: { authorization: token },
       })
       .then((res) => {
-        setCart({ loading: false, data: res.data.cart, error: "" });
+        dispatchCart({ type: ACTION_TYPE_SUCCESS, payload: res.data.cart });
       })
       .catch((err) => {
-        setCart({ loading: false, data: [], error: err.message });
+        dispatchCart({ type: ACTION_TYPE_FAILURE, payload: err.message });
       });
   }, []);
 
@@ -127,7 +136,7 @@ const CartProvider = ({ children }) => {
     <CartContext.Provider
       value={{
         cart,
-        setCart,
+        setCart: dispatchCart,
         addToCart,
         incrementQuanity,
         decrementQuantity,

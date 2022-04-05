@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { useAuth } from "../../context/AuthContext";
 import { useCart } from "../../context/CartContext";
 import RatingBar from "./RatingBar";
 
 const ProductCard = ({ product }) => {
-  const { addToCart } = useCart();
+  const { cart, addToCart } = useCart();
   const [isInCart, setIsInCart] = useState(false);
+  const { isLoggedIn } = useAuth();
   useEffect(() => {
-    wishList.data.forEach((element) => {
-      if (element._id == product._id) setIsInWishList(() => true);
-    });
     cart.data.forEach((element) => {
       if (element._id == product._id) setIsInCart(() => true);
     });
@@ -54,13 +53,16 @@ const ProductCard = ({ product }) => {
           </div>
           <div className="card-actions">
             <button
-              className="btn btn-round-md btn-dark"
-              onClick={() =>
+              className={`btn btn-round-md ${
+                isLoggedIn && !isInCart ? "btn-light" : "btn-dark"
+              }`}
+              onClick={() => {
+                isLoggedIn && setIsInCart(true);
                 product.inStock &&
-                addToCart({
-                  ...product,
-                })
-              }
+                  addToCart({
+                    ...product,
+                  });
+              }}
             >
               <i className="fa fa-shopping-cart"></i>
             </button>
