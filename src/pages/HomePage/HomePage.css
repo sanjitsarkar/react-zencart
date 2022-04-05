@@ -115,11 +115,6 @@
         -ms-flex-pack: center;
             justify-content: center;
   }
-  .section-category .row {
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-  }
   .section-brands .row {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
@@ -134,6 +129,31 @@
   background-color: var(--dark-color-7);
   -o-object-fit: contain;
      object-fit: contain;
+}
+
+.category-grid {
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  gap: 1rem;
+  -ms-grid-columns: (minmax(12rem, 1fr))[auto-fill];
+      grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+}
+
+#category-card {
+  max-width: unset;
+  width: unset;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  min-width: 12rem;
+}
+
+@media only screen and (max-width: 350px) {
+  .section-category,
+  .section-brands {
+    padding: 1.5rem;
+  }
 }
 
 .section-category .card .img {
