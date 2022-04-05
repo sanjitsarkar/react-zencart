@@ -37,8 +37,8 @@ const ProductCard = ({ product }) => {
               </h4>
             </div>
             <div className="row items-center gap-025">
-              <RatingBar ratings={parseInt(product.ratings)} />
-              <h4 className="mr-1 text-sm o-90">{product.ratings}</h4>
+              <RatingBar rating={parseInt(product.rating)} />
+              <h4 className="mr-1 text-sm o-90">{product.rating}</h4>
             </div>
           </div>
           <div className="card-actions">
