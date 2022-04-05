@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useCart } from "../../context/CartContext";
 import RatingBar from "./RatingBar";
 
 const ProductCard = ({ product }) => {
   const { addToCart } = useCart();
-
+  const [isInCart, setIsInCart] = useState(false);
+  useEffect(() => {
+    wishList.data.forEach((element) => {
+      if (element._id == product._id) setIsInWishList(() => true);
+    });
+    cart.data.forEach((element) => {
+      if (element._id == product._id) setIsInCart(() => true);
+    });
+  }, []);
   return (
     <div className="card  card-dark  bx-sh-light-3">
       {!product.inStock && <h1 className="outofstock">Out Of Stock</h1>}
