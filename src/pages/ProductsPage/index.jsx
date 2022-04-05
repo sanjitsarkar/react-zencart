@@ -16,13 +16,8 @@ const ProductsPage = () => {
       <Header />
 
       <main className="container w-full row h-screen text-light">
-        <ToTopButton />
-        <ProductsProvider>
-          <FiltersProvider>
-            <FilterSection showFilter={showFilter} />
-            <ProductsGrid toggleFilter={toggleFilter} />
-          </FiltersProvider>
-        </ProductsProvider>
+        <FilterSection showFilter={showFilter} />
+        <ProductsGrid toggleFilter={toggleFilter} />
       </main>
     </>
   );
