@@ -8,7 +8,7 @@ const WishListSection = () => {
     <>
       <h1 className="text-2xl text-center pt-2">My Wishlist</h1>
       <section className="wishlist-section w-full h-full mt-2  mr-0 pr-0 row gap-2 justify-center ">
-        <div className="wishlist-grid  p-3 pt-0">
+        <div className="products-grid p-3 pt-0" id="center-grid">
           {wishList.loading && <Loader />}
           {!wishList.loading &&
             wishList.data.map((product) => (

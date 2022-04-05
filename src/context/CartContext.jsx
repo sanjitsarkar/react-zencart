@@ -120,10 +120,10 @@ const CartProvider = ({ children }) => {
         dispatchCart({ type: ACTION_TYPE_FAILURE, payload: err.message });
       });
   };
-  const clearCart = () => {
-    setCart([]);
-  };
+
   useEffect(() => {
+    dispatchCart({ type: ACTION_TYPE_LOADING });
+
     axios
       .get("/api/user/cart", {
         headers: { authorization: token },
@@ -145,7 +145,6 @@ const CartProvider = ({ children }) => {
         incrementQuantity,
         decrementQuantity,
         removeFromCart,
-        clearCart,
       }}
     >
       {children}
