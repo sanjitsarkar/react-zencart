@@ -10,7 +10,7 @@ const CategorySection = () => {
     <section className="section-category p-5  mr-0 pr-4 mt-0 pt-0">
       <h1 className="text-2xl mb-3 section-title">Shop By Category</h1>
       {categories.loading && <Loader />}
-      <div className="row gap-1 ">
+      <div className="category-grid gap-1 ">
         {!categories.loading &&
           categories.data.length &&
           categories.data

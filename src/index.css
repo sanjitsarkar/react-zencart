@@ -10,4 +10,48 @@ html {
 body {
   background: var(--dark-color);
 }
+
+.card-dark {
+  overflow: hidden;
+  background-color: var(--dark-black);
+}
+
+.rating-bar .rating,
+.rating-bar .rating-active {
+  font-size: 0.8rem;
+}
+
+/* Login and Sign Up Form Stying Section */
+form.form {
+  background-color: var(--light-grey);
+  margin-bottom: 15vh;
+  margin-top: 20vh;
+}
+
+@media only screen and (max-width: 535px) {
+  form.form {
+    padding: 1rem;
+  }
+}
+
+#toast {
+  right: 1rem;
+  top: 16vh;
+  left: auto;
+}
+
+.products-grid {
+  display: -ms-grid;
+  display: grid;
+  justify-items: center;
+  grid-gap: 2rem;
+  -ms-grid-columns: (minmax(15rem, 1fr))[auto-fill];
+      grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+}
+
+#product-card {
+  max-width: unset;
+  width: unset;
+  min-width: 15rem;
+}
 /*# sourceMappingURL=index.css.map */
