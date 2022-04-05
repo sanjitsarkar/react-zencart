@@ -6,7 +6,7 @@ import { useProduct } from "../../context/ProductsContext";
 import ProductCard from "./ProductCard";
 
 const ProductsGrid = ({ toggleFilter }) => {
-  const { products, searchProducts } = useProduct();
+  const { products } = useProduct();
   const { resetFilters } = useFilter();
   useEffect(() => {
     resetFilters();
