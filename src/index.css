@@ -39,16 +39,14 @@ form.form {
   top: 16vh;
   left: auto;
 }
-<<<<<<< HEAD
-=======
 
 .products-grid {
   display: -ms-grid;
   display: grid;
   justify-items: center;
   grid-gap: 2rem;
-  -ms-grid-columns: (minmax(15rem, 1fr))[auto-fill];
-      grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  -ms-grid-columns: (minmax(15rem, 1fr)) [auto-fill];
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
 }
 
 #product-card {
@@ -56,5 +54,4 @@ form.form {
   width: unset;
   min-width: 15rem;
 }
->>>>>>> pages/products
 /*# sourceMappingURL=index.css.map */
