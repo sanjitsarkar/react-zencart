@@ -34,7 +34,7 @@ header nav ul.left .input-box {
   .search-icon {
     visibility: visible;
   }
-  .input-box {
+  header .input-box {
     display: none;
   }
 }
