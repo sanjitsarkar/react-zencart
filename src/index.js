@@ -6,6 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import { makeServer } from "./server";
 import { AuthProvider } from "./context/AuthContext";
 import { ToastProvider } from "./context/ToastContext";
+import { CartProvider } from "./context/CartContext";
 import { ProductsProvider } from "./context/ProductsContext";
 import { FiltersProvider } from "./context/FilterContext";
 
@@ -16,13 +17,15 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <ToastProvider>
-        <AuthProvider>
-          <ProductsProvider>
-            <FiltersProvider>
-              <App />
-            </FiltersProvider>
-          </ProductsProvider>
-        </AuthProvider>
+        <ProductsProvider>
+          <FiltersProvider>
+            <AuthProvider>
+              <CartProvider>
+                <App />
+              </CartProvider>
+            </AuthProvider>
+          </FiltersProvider>
+        </ProductsProvider>
       </ToastProvider>
     </BrowserRouter>
   </React.StrictMode>,

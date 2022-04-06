@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useAuth } from "../../context/AuthContext";
+import { useCart } from "../../context/CartContext";
 import RatingBar from "./RatingBar";
 
 const ProductCard = ({ product }) => {
+  const { cart, addToCart } = useCart();
+  const [isInCart, setIsInCart] = useState(false);
+  const { isLoggedIn } = useAuth();
+  useEffect(() => {
+    cart.data.forEach((element) => {
+      if (element._id == product._id) setIsInCart(() => true);
+    });
+  }, []);
   return (
     <div className="card  card-dark  bx-sh-light-3">
       {!product.inStock && <h1 className="outofstock">Out Of Stock</h1>}
@@ -42,7 +52,18 @@ const ProductCard = ({ product }) => {
             </div>
           </div>
           <div className="card-actions">
-            <button className="btn btn-round-md btn-dark">
+            <button
+              className={`btn btn-round-md ${
+                isLoggedIn && !isInCart ? "btn-light" : "btn-dark"
+              }`}
+              onClick={() => {
+                isLoggedIn && setIsInCart(true);
+                product.inStock &&
+                  addToCart({
+                    ...product,
+                  });
+              }}
+            >
               <i className="fa fa-shopping-cart"></i>
             </button>
             <button className="btn-round-md btn bg-light text-pink">
