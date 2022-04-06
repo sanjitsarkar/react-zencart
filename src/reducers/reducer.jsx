@@ -5,6 +5,11 @@ const initialState = {
 };
 const reducer = (state, action) => {
   switch (action.type) {
+    case "LOADING":
+      return {
+        ...state,
+        loading: true,
+      };
     case "SUCCESS":
       return {
         ...state,

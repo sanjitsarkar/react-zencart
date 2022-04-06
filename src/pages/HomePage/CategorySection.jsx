@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useReducer } from "react";
+import React from "react";
 import Loader from "../../components/Loader";
 import useCategory from "../../hooks/useCategory";
 import CategoryCard from "./CategoryCard";

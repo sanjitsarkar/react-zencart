@@ -9,53 +9,47 @@ import IMAGES from "../../assets/images";
 export const categories = [
   {
     _id: uuid(),
-    categoryName: "Headphones",
+    categoryName: "Headphone",
     img: [IMAGES.HEADPHONE],
     description:
       "A video game console is an electronic device that outputs a video signal or image to display a video game that can be played with a game controller.",
   },
   {
     _id: uuid(),
-    categoryName: "Keyboards",
+    categoryName: "Keyboard",
     img: [IMAGES.KEYBOARD],
 
-    description:
-      "A game is a structured form of play, usually undertaken for entertainment or fun.",
+    description: "",
   },
   {
     _id: uuid(),
-    categoryName: "Speakers",
+    categoryName: "Speaker",
     img: [IMAGES.SPEAKER],
 
-    description:
-      "A video game accessory is a distinct piece of hardware that is required to use a video game console, or one that enriches the video game's play experience.",
+    description: "",
   },
   {
     _id: uuid(),
     categoryName: "Studio Mic",
     img: [IMAGES.STUDIO_MIC],
-    description:
-      "A video game accessory is a distinct piece of hardware that is required to use a video game console, or one that enriches the video game's play experience.",
+    description: "",
   },
   {
     _id: uuid(),
-    categoryName: "DJ Kits",
+    categoryName: "DJ Kit",
     img: [IMAGES.DJ_KIT],
-    description:
-      "A video game accessory is a distinct piece of hardware that is required to use a video game console, or one that enriches the video game's play experience.",
+    description: "",
   },
   {
     _id: uuid(),
     categoryName: "Midi Keyboard",
     img: [IMAGES.MIDI_KEYBOARD],
-    description:
-      "A video game accessory is a distinct piece of hardware that is required to use a video game console, or one that enriches the video game's play experience.",
+    description: "",
   },
   {
     _id: uuid(),
-    categoryName: "Guitars",
+    categoryName: "Guitar",
     img: [IMAGES.GUITAR],
-    description:
-      "A video game accessory is a distinct piece of hardware that is required to use a video game console, or one that enriches the video game's play experience.",
+    description: "",
   },
 ];
