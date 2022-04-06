@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { useCart } from "../../context/CartContext";
+import { useWishList } from "../../context/WishListContext";
 import RatingBar from "./RatingBar";
 
 const ProductCard = ({ product }) => {
   const { cart, addToCart } = useCart();
-  const [isInCart, setIsInCart] = useState(false);
+  const { wishList, toggleWishList, isAlreadyInWishList } = useWishList();
   const { isLoggedIn } = useAuth();
+  const [isInWishList, setIsInWishList] = useState(false);
+  const [isInCart, setIsInCart] = useState(false);
   useEffect(() => {
+    wishList.data.forEach((element) => {
+      if (element._id == product._id) setIsInWishList(() => true);
+    });
     cart.data.forEach((element) => {
       if (element._id == product._id) setIsInCart(() => true);
     });
@@ -66,7 +72,19 @@ const ProductCard = ({ product }) => {
             >
               <i className="fa fa-shopping-cart"></i>
             </button>
-            <button className="btn-round-md btn bg-light text-pink">
+            <button
+              className={` btn-round-md btn ${
+                isLoggedIn && isInWishList
+                  ? "bg-pink text-light"
+                  : "bg-light text-pink"
+              }`}
+              onClick={() => {
+                isLoggedIn && setIsInWishList(() => !isInWishList);
+                toggleWishList({
+                  ...product,
+                });
+              }}
+            >
               <i className="fa fa-heart"></i>
             </button>
             <button className="btn btn-round-md  btn-primary">

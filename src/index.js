@@ -5,6 +5,7 @@ import { App } from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { makeServer } from "./server";
 import { AuthProvider } from "./context/AuthContext";
+import { WishListProvider } from "./context/WishListContext";
 import { ToastProvider } from "./context/ToastContext";
 import { CartProvider } from "./context/CartContext";
 import { ProductsProvider } from "./context/ProductsContext";
@@ -21,7 +22,9 @@ ReactDOM.render(
           <FiltersProvider>
             <AuthProvider>
               <CartProvider>
-                <App />
+                <WishListProvider>
+                  <App />
+                </WishListProvider>
               </CartProvider>
             </AuthProvider>
           </FiltersProvider>

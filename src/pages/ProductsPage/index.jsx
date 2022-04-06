@@ -14,7 +14,6 @@ const ProductsPage = () => {
   return (
     <>
       <Header />
-
       <main className="container w-full row h-screen text-light">
         <FilterSection showFilter={showFilter} />
         <ProductsGrid toggleFilter={toggleFilter} />

@@ -2,28 +2,31 @@ import React, { useEffect, useState } from "react";
 import { useCart } from "../../context/CartContext";
 import { useWishList } from "../../context/WishListContext";
 
-const CartProductCard = ({ product }) => {
-  const { incrementQuantity, decrementQuantity, removeFromCart } = useCart();
+const WishListProductCard = ({ product }) => {
+  const { cart, addToCart } = useCart();
   const { wishList, toggleWishList } = useWishList();
   const [isInWishList, setIsInWishList] = useState(false);
+  const [isInCart, setIsInCart] = useState(false);
   useEffect(() => {
     wishList.data.forEach((element) => {
       if (element._id == product._id) setIsInWishList(() => true);
     });
+    cart.data.forEach((element) => {
+      if (element._id == product._id) setIsInCart(() => true);
+    });
   }, []);
   return (
-    <div className="cart-product-card card card-horizontal card-dark">
+    <div className="card card-sm card-dark " id="product-card">
       <div className="card-header">
         <img
           src={product.images[0]}
           alt={product.name}
-          id="cart-image"
-          className="object-cover"
+          className="h-40 w-full object-contain"
         />
       </div>
       <div className="card-bottom">
-        <div className="card-body ">
-          <h1 className="card-title">{product.name}</h1>
+        <div className="card-body">
+          <div className="card-title">{product.name}</div>
           <p className="card-description">{product.desc}</p>
         </div>
         <div className="card-footer">
@@ -31,26 +34,20 @@ const CartProductCard = ({ product }) => {
             <h4 className="o-70 font-semibold">Price</h4>
             <h4 className="text-md font-medium">₹ {product.price}</h4>
           </div>
-          <div className="card-actions justify-between">
+          <div className="card-actions">
             <button
-              className="btn btn-round-md btn-dark"
-              onClick={() => incrementQuantity(product._id)}
+              className={`btn btn-round-md ${
+                !isInCart ? "btn-light" : "btn-dark"
+              }`}
+              onClick={() => {
+                setIsInCart(true);
+                product.inStock &&
+                  addToCart({
+                    ...product,
+                  });
+              }}
             >
-              <i className="fa fa-add"></i>
-            </button>
-            {product.qty}
-            <button
-              className=" btn-round-md btn btn-dark"
-              onClick={() => decrementQuantity(product._id, product.qty)}
-            >
-              <i className="fa fa-minus"></i>
-            </button>
-
-            <button
-              className=" btn btn-round-md  btn-error"
-              onClick={() => removeFromCart(product._id)}
-            >
-              <i className="fa fa-trash"></i>
+              <i className="fa fa-shopping-cart"></i>
             </button>
             <button
               className={` btn-round-md btn ${
@@ -65,6 +62,9 @@ const CartProductCard = ({ product }) => {
             >
               <i className="fa fa-heart"></i>
             </button>
+            <button className="btn btn-round-md  btn-primary">
+              <i className="fa fa-share"></i>
+            </button>
           </div>
         </div>
       </div>
@@ -72,4 +72,4 @@ const CartProductCard = ({ product }) => {
   );
 };
 
-export default CartProductCard;
+export default WishListProductCard;

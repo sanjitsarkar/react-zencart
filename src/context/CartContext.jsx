@@ -23,7 +23,11 @@ const CartProvider = ({ children }) => {
   const addToCart = (product) => {
     dispatchCart({ type: ACTION_TYPE_LOADING });
     if (!isLoggedIn) {
-      return;
+      setToast({
+        show: true,
+        content: "Please login to add item to cart",
+        type: "warning",
+      });
     }
     if (cart.data.find((item) => item._id === product._id)) {
       setToast({
@@ -55,7 +59,7 @@ const CartProvider = ({ children }) => {
         });
     }
   };
-  const incrementQuanity = (id) => {
+  const incrementQuantity = (id) => {
     axios
       .post(
         `/api/user/cart/${id}`,
@@ -116,10 +120,10 @@ const CartProvider = ({ children }) => {
         dispatchCart({ type: ACTION_TYPE_FAILURE, payload: err.message });
       });
   };
-  const clearCart = () => {
-    setCart([]);
-  };
+
   useEffect(() => {
+    dispatchCart({ type: ACTION_TYPE_LOADING });
+
     axios
       .get("/api/user/cart", {
         headers: { authorization: token },
@@ -138,10 +142,9 @@ const CartProvider = ({ children }) => {
         cart,
         setCart: dispatchCart,
         addToCart,
-        incrementQuanity,
+        incrementQuantity,
         decrementQuantity,
         removeFromCart,
-        clearCart,
       }}
     >
       {children}
