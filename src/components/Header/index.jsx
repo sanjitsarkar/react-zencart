@@ -77,7 +77,7 @@ const Header = () => {
                 </Link>
               </li>
               <li>
-                <button className="btn btn-primary" onClick={logOut}>
+                <button className="btn btn-secondary" onClick={logOut}>
                   Logout
                 </button>
               </li>
