@@ -1,11 +1,11 @@
 import React from "react";
-import Layout from "../../components/Layout";
-
+import Header from "../../components/Header";
 const CartPage = () => {
   return (
-    <Layout>
-      <div>CartPage</div>
-    </Layout>
+    <>
+      <Header />
+      <h1>Cart Page</h1>
+    </>
   );
 };
 
