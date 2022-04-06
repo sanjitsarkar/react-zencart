@@ -1,0 +1,124 @@
+/* Product Listing Styling Section */
+.sidebar {
+  margin-top: 20vh;
+  -webkit-box-flex: 3;
+      -ms-flex: 3;
+          flex: 3;
+  padding-left: 1em;
+  height: 100%;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  overflow: hidden;
+  overflow-y: scroll;
+  padding-bottom: 22vh;
+  border-right: 2px solid var(--primary-color);
+}
+
+.card {
+  max-width: 100%;
+  min-height: auto !important;
+}
+
+.card .card-bottom {
+  height: auto;
+}
+
+.sidebar .col {
+  padding: 0.5rem;
+}
+
+.products {
+  -webkit-box-flex: 12;
+      -ms-flex: 12;
+          flex: 12;
+  padding-top: 20vh;
+  height: 100%;
+  padding-bottom: 2vh;
+  overflow: hidden;
+  overflow-y: scroll;
+  padding-left: 2%;
+}
+
+.products-grid {
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  gap: 1rem;
+  -ms-grid-columns: (minmax(15rem, 1fr))[auto-fill];
+      grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+}
+
+.filter-btn {
+  z-index: 1;
+  display: none;
+}
+
+@media only screen and (max-width: 508px) {
+  .products {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+@media only screen and (max-width: 345px) {
+  .products {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@media only screen and (max-width: 950px) {
+  .sidebar {
+    -webkit-box-flex: 1;
+        -ms-flex: auto;
+            flex: auto;
+    z-index: 4;
+    display: none;
+    background-color: var(--dark-color-1);
+    -webkit-backdrop-filter: var(--blur-5);
+            backdrop-filter: var(--blur-5);
+    position: absolute;
+    top: 30vh;
+    margin: 0;
+    padding: 1rem;
+    width: 100%;
+    left: 0;
+    -webkit-box-shadow: var(--bx-sh-primary-1);
+            box-shadow: var(--bx-sh-primary-1);
+  }
+  .filter-btn {
+    display: block;
+  }
+}
+
+.show {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+}
+
+.outofstock {
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--dark-color-2);
+  color: var(--primary-color);
+  display: -ms-grid;
+  display: grid;
+  place-content: center;
+  font-size: x-large;
+  font-weight: 600;
+}
+
+.sidebar-title {
+  padding: 0.5rem;
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.silder-container {
+  width: 10%;
+}
+/*# sourceMappingURL=ProductsPage.css.map */
