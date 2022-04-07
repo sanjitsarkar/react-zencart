@@ -24,7 +24,7 @@ const Header = () => {
           >
             <i className="fa fa-bars"></i>
           </button>
-          <Link to="/" className="text-xl text-light">
+          <Link to="/" className="text-xl text-light site-title">
             ZenCart
           </Link>
 
@@ -52,6 +52,9 @@ const Header = () => {
             navbar ? "show" : ""
           }`}
         >
+          <Link to="/" className="">
+            Home
+          </Link>
           {!isLoggedIn && (
             <li>
               <Link to="/login" className="btn btn-primary">
