@@ -6,7 +6,7 @@ import {
 } from "../utils";
 import { useProduct } from "./ProductsContext";
 const initialState = {
-  price: 12500,
+  price: 50000,
   search: "",
   categories: [],
   brands: [],

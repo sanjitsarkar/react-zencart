@@ -26,8 +26,9 @@ const CartProvider = ({ children }) => {
       setToast({
         show: true,
         content: "Please login to add item to cart",
-        type: "warning",
+        type: "error",
       });
+      return;
     }
     if (cart.data.find((item) => item._id === product._id)) {
       setToast({

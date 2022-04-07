@@ -25,7 +25,7 @@ const WishListProvider = ({ children }) => {
       setToast({
         show: true,
         content: "Please login to add item to wishlist",
-        type: "warning",
+        type: "error",
       });
       return;
     }

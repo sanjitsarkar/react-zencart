@@ -29,6 +29,7 @@ const LoginPage = () => {
                   setLoginCred({ ...loginCred, email: e.target.value })
                 }
                 required
+                autoComplete="true"
               />
             </div>
             <div className="input-box input input-light">
@@ -42,6 +43,7 @@ const LoginPage = () => {
                   setLoginCred({ ...loginCred, password: e.target.value })
                 }
                 required
+                autoComplete="true"
               />
               <i
                 className={`fa cursor-pointer ${

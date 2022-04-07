@@ -5,6 +5,7 @@ import {
   ACTION_TYPE_FAILURE,
   ACTION_TYPE_SUCCESS,
   ACTION_TYPE_LOADING,
+  shuffle,
 } from "../utils";
 const ProductsContext = createContext();
 const ProductsProvider = ({ children }) => {
@@ -12,7 +13,7 @@ const ProductsProvider = ({ children }) => {
   const fetchProducts = async () => {
     try {
       const res = await axios.get("/api/products");
-      return { loading: false, data: res.data.products, error: "" };
+      return { loading: false, data: shuffle(res.data.products), error: "" };
     } catch (err) {
       return { loading: false, data: [], error: err.message };
     }
@@ -24,7 +25,7 @@ const ProductsProvider = ({ children }) => {
       .then((res) => {
         dispatch({
           type: ACTION_TYPE_SUCCESS,
-          payload: res.data.products,
+          payload: shuffle(res.data.products),
         });
       })
       .catch((err) => {

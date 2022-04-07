@@ -29,7 +29,7 @@ const FilterSection = ({ showFilter }) => {
             <input
               type="range"
               min="5000"
-              max="20000"
+              max="50000"
               className="slider"
               defaultValue={filters.price}
               id="slider"
@@ -94,15 +94,6 @@ const FilterSection = ({ showFilter }) => {
             />
             <span className="checkmark"></span>
           </label>
-          <label className="checkbox-container">
-            Midi Keyboard
-            <input
-              type="checkbox"
-              defaultValue="Midi Keyboard"
-              onChange={handleCategories}
-            />
-            <span className="checkmark"></span>
-          </label>
         </div>
         <div className="col gap-1">
           <h3 className="sidebar-title  text-lg">Brand</h3>
@@ -121,6 +112,15 @@ const FilterSection = ({ showFilter }) => {
             <input
               type="checkbox"
               defaultValue="Casio"
+              onChange={handleBrands}
+            />
+            <span className="checkmark"></span>
+          </label>
+          <label className="checkbox-container">
+            Sennheiser
+            <input
+              type="checkbox"
+              defaultValue="Sennheiser"
               onChange={handleBrands}
             />
             <span className="checkmark"></span>

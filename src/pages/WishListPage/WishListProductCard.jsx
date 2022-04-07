@@ -21,7 +21,7 @@ const WishListProductCard = ({ product }) => {
         <img
           src={product.images[0]}
           alt={product.name}
-          className="h-40 w-full object-contain"
+          className="h-40 w-full object-cover"
         />
       </div>
       <div className="card-bottom">

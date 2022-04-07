@@ -29,6 +29,7 @@ const SignupPage = () => {
                   setSignupCred({ ...signupCred, firstName: e.target.value })
                 }
                 required
+                autoComplete="true"
               />
             </div>
             <div className="input-box input input-light">
@@ -42,6 +43,7 @@ const SignupPage = () => {
                   setSignupCred({ ...signupCred, lastName: e.target.value })
                 }
                 required
+                autoComplete="true"
               />
             </div>
             <div className="input-box input input-light">
@@ -55,6 +57,7 @@ const SignupPage = () => {
                   setSignupCred({ ...signupCred, email: e.target.value })
                 }
                 required
+                autoComplete="true"
               />
             </div>
             <div className="input-box input input-light">
@@ -68,6 +71,7 @@ const SignupPage = () => {
                   setSignupCred({ ...signupCred, password: e.target.value })
                 }
                 required
+                autoComplete="true"
               />
               <i className="fa fa-eye"></i>
             </div>
@@ -85,6 +89,7 @@ const SignupPage = () => {
                   })
                 }
                 required
+                autoComplete="true"
               />
               <i className="fa fa-eye"></i>
             </div>

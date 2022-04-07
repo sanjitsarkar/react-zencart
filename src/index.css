@@ -48,8 +48,12 @@ form.form {
   cursor: pointer;
 }
 
-.Toastify__toast .Toastify__toast-theme--colored .Toastify__toast--info {
-  background-color: var(--info-color) !important;
+.card-title {
+  display: -webkit-box;
+  max-width: 100%;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /*# sourceMappingURL=index.css.map */
