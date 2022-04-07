@@ -1,8 +1,10 @@
 import React from "react";
 import empty from "./empty.webp";
-const NotAvailable = ({ title, img = empty, children }) => {
+const NotAvailable = ({ title, img = empty, children, classes = "" }) => {
   return (
-    <div className="w-full  grid place-content-center gap-1 place-items-center">
+    <div
+      className={`w-full grid place-content-center gap-1 place-items-center ${classes}`}
+    >
       <img src={img} className="w-80" alt={title} />
       <h2 className="text-center">{title}</h2>
       {children}

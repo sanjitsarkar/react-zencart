@@ -43,4 +43,8 @@ form.form {
 #center-grid {
   width: auto;
 }
+
+.cursor-pointer {
+  cursor: pointer;
+}
 /*# sourceMappingURL=index.css.map */

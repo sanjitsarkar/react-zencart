@@ -6,6 +6,7 @@ import Toast from "./components/Toast";
 import { useToast } from "./context/ToastContext";
 
 import { CartPage, HomePage, ProductsPage, WishListPage } from "./pages";
+import PagNotFound from "./pages/404";
 import LoginPage from "./pages/AuthPage/LoginPage";
 import SignupPage from "./pages/AuthPage/SignupPage";
 
@@ -35,6 +36,7 @@ function App() {
           }
         />
         <Route path="/mockman" element={<MockmanEs />} />
+        <Route path="*" element={<PagNotFound />} />
       </Routes>
       <Toast content={toast.content} type={toast.type} show={toast.show} />
     </>
