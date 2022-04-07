@@ -39,22 +39,12 @@ const Header = () => {
             navbar ? "show" : ""
           }`}
         >
-          <li>
-            <Link to="/">Home</Link>
-          </li>
           {!isLoggedIn && (
-            <>
-              <li>
-                <Link to="/login" className="btn btn-primary">
-                  Login
-                </Link>
-              </li>
-              <li>
-                <Link to="/signup" className="btn btn-secondary">
-                  Signup
-                </Link>
-              </li>
-            </>
+            <li>
+              <Link to="/login" className="btn btn-primary">
+                Login
+              </Link>
+            </li>
           )}
           {isLoggedIn && (
             <>
@@ -87,7 +77,7 @@ const Header = () => {
                 </Link>
               </li>
               <li>
-                <button className="btn btn-primary" onClick={logOut}>
+                <button className="btn btn-secondary" onClick={logOut}>
                   Logout
                 </button>
               </li>

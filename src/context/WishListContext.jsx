@@ -1,16 +1,24 @@
 import axios from "axios";
-import React, { useState, createContext, useContext, useEffect } from "react";
+import React, {
+  useState,
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+} from "react";
+import { initialState, reducer } from "../reducers/reducer";
+import {
+  ACTION_TYPE_FAILURE,
+  ACTION_TYPE_LOADING,
+  ACTION_TYPE_SUCCESS,
+} from "../utils";
 import { useAuth } from "./AuthContext";
 import { useToast } from "./ToastContext";
-const initialState = {
-  loading: true,
-  data: [],
-  error: "",
-};
+
 const WishListContext = createContext();
 const WishListProvider = ({ children }) => {
   const { isLoggedIn } = useAuth();
-  const [wishList, setWishList] = useState(initialState);
+  const [wishList, dispatchWishList] = useReducer(reducer, initialState);
   const { setToast } = useToast();
   const toggleWishList = (product) => {
     if (!isLoggedIn) {
@@ -40,10 +48,13 @@ const WishListProvider = ({ children }) => {
             content: `Item added to wishlist`,
             type: "info",
           });
-          setWishList({ loading: false, data: res.data.wishlist, error: "" });
+          dispatchWishList({
+            type: ACTION_TYPE_SUCCESS,
+            payload: res.data.wishlist,
+          });
         })
         .catch((err) => {
-          setWishList({ loading: false, data: [], error: err.message });
+          dispatchWishList({ type: ACTION_TYPE_FAILURE, payload: err.message });
         });
     }
   };
@@ -59,26 +70,34 @@ const WishListProvider = ({ children }) => {
           content: `Item removed from wishlist`,
           type: "error",
         });
-        setWishList({ loading: false, data: res.data.wishlist, error: "" });
+        dispatchWishList({
+          type: ACTION_TYPE_SUCCESS,
+          payload: res.data.wishlist,
+        });
       })
       .catch((err) => {
-        setWishList({ loading: false, data: [], error: err.message });
+        dispatchWishList({ type: ACTION_TYPE_FAILURE, payload: err.message });
       });
   };
   const clearWishList = () => {
-    setWishList([]);
+    dispatchWishList([]);
   };
 
   useEffect(() => {
+    dispatchWishList({ type: ACTION_TYPE_LOADING });
+
     axios
       .get("/api/user/wishlist", {
         headers: { authorization: localStorage.getItem("token") },
       })
       .then((res) => {
-        setWishList({ loading: false, data: res.data.wishlist, error: "" });
+        dispatchWishList({
+          type: ACTION_TYPE_SUCCESS,
+          payload: res.data.wishlist,
+        });
       })
       .catch((err) => {
-        setWishList({ loading: false, data: [], error: err.message });
+        dispatchWishList({ type: ACTION_TYPE_FAILURE, payload: err.message });
       });
   }, []);
 
@@ -86,7 +105,7 @@ const WishListProvider = ({ children }) => {
     <WishListContext.Provider
       value={{
         wishList,
-        setWishList,
+        setWishList: dispatchWishList,
         toggleWishList,
         clearWishList,
       }}

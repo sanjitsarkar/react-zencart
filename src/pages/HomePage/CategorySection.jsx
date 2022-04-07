@@ -9,8 +9,8 @@ const CategorySection = () => {
   return (
     <section className="section-category p-5  mr-0 pr-4 mt-0 pt-0">
       <h1 className="text-2xl mb-3 section-title">Shop By Category</h1>
-      <div className="row gap-1 ">
-        {categories.loading && <Loader />}
+      {categories.loading && <Loader />}
+      <div className="category-grid gap-1 ">
         {!categories.loading &&
           categories.data.length &&
           categories.data
@@ -22,9 +22,6 @@ const CategorySection = () => {
                 key={category._id}
               />
             ))}
-        {!categories.loading && !categories.data.length && (
-          <h1>No Categories Found</h1>
-        )}
       </div>
     </section>
   );
