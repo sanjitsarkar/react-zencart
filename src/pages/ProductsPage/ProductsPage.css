@@ -91,13 +91,14 @@
   .filter-btn {
     display: block;
   }
-  .show {
-    -webkit-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-  }
+}
+
+.show {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
 }
 
 .outofstock {

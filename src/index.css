@@ -52,16 +52,4 @@ form.form {
   background-color: var(--info-color) !important;
 }
 
-.Toastify__toast .Toastify__toast-theme--colored .Toastify__toast--warn {
-  background-color: var(--warning-color) !important;
-  color: var(--dark-black) !important;
-}
-
-.Toastify__toast .Toastify__toast-theme--colored .Toastify__toast--error {
-  background-color: var(--error-color) !important;
-}
-
-.Toastify__toast .Toastify__toast-theme--colored .Toastify__toast--success {
-  background-color: var(--success-color) !important;
-}
 /*# sourceMappingURL=index.css.map */

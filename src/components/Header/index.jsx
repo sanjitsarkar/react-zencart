@@ -27,7 +27,6 @@ const Header = () => {
           <Link to="/" className="text-xl text-light">
             ZenCart
           </Link>
-          <i className="search-icon fa fa-search btn btn-round-md btn-secondary"></i>
 
           <div className="input-box input input-dark">
             <i className="fa fa-search"></i>
