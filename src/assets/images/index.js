@@ -11,6 +11,7 @@ const IMAGES = {
   PIONEER: require("./brands/pioneer.png").default,
   SONY: require("./brands/sony.png").default,
   AUDIO_TECHNICA: require("./brands/audio-technica.png").default,
+  EMPTY_CART: require("./empty_cart.png").default,
 };
 
 export default IMAGES;

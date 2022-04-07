@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import Loader from "../../components/Loader";
+import NotAvailable from "../../components/NotAvailable";
 import { useFilter } from "../../context/FilterContext";
 import { useProduct } from "../../context/ProductsContext";
 
@@ -33,10 +34,10 @@ const ProductsGrid = ({ toggleFilter }) => {
           products.data.map((product) => (
             <ProductCard product={product} key={product._id} />
           ))}
-        {!products.loading && !products.data.length && (
-          <h4>No Products Available</h4>
-        )}
       </div>
+      {!products.loading && !products.data.length && (
+        <NotAvailable title="No product is available" />
+      )}
     </section>
   );
 };

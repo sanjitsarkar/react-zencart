@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { useCart } from "../../context/CartContext";
 import { useFilter } from "../../context/FilterContext";
@@ -10,8 +10,9 @@ const Header = () => {
   const [navbar, setNavbar] = useState(false);
   const { isLoggedIn, logOut } = useAuth();
   const { cart } = useCart();
+  const location = useLocation();
   const { wishList } = useWishList();
-  const { setFilters } = useFilter();
+  const { setFilters, searchProductsByName } = useFilter();
   const navigate = useNavigate();
   return (
     <header className=" bg-dark-2 l-2 r-2 t-2 p-2 pl-3 pr-3 h-auto fixed flex items-center z-50 br-lg b-solid b-1 h-min br-primary back-blur-5 bx-sh-primary-3">
@@ -35,9 +36,12 @@ const Header = () => {
               placeholder="Search products..."
               className="input"
               defaultValue={setFilters.search}
-              onChange={(e) => {
-                navigate("/products");
-                setFilters({ search: e.target.value });
+              onChange={async (e) => {
+                if (!location.pathname.includes("products")) {
+                  console.log("not");
+                  navigate("/products");
+                }
+                await searchProductsByName(e.target.value);
               }}
             />
           </div>

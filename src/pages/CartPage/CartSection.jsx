@@ -1,5 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Loader from "../../components/Loader";
+import NotAvailable from "../../components/NotAvailable";
 import { useCart } from "../../context/CartContext";
 import CartPriceDetails from "./CartPriceDetails";
 import { CartProducts } from "./CartProducts";
@@ -18,7 +20,16 @@ const CartSection = () => {
             <CartPriceDetails cart={cart} />
           </>
         )}
-        {!cart.data.length && <h2>Cart is empty</h2>}
+        {!cart.data.length && (
+          <NotAvailable
+            title="Cart is empty"
+            children={
+              <Link to="/products" className="btn btn-secondary">
+                Browse Products
+              </Link>
+            }
+          />
+        )}
       </section>
     </>
   );

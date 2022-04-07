@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import NotAvailable from "../../components/NotAvailable";
 import { useWishList } from "../../context/WishListContext";
 import WishListProductCard from "./WishListProductCard";
 
@@ -15,7 +17,14 @@ const WishListSection = () => {
               <WishListProductCard product={product} key={product._id} />
             ))}
           {!wishList.loading && wishList.data.length == 0 && (
-            <h2>Wishlist is empty</h2>
+            <NotAvailable
+              title="Wishlist is empty"
+              children={
+                <Link to="/products" className="btn btn-secondary">
+                  Browse Products
+                </Link>
+              }
+            />
           )}
         </div>
       </section>

@@ -7,13 +7,14 @@ import {
 import { useProduct } from "./ProductsContext";
 const initialState = {
   price: 12500,
+  search: "",
   categories: [],
   brands: [],
   sortBy: "price",
 };
 const FiltersContext = createContext();
 const FiltersProvider = ({ children }) => {
-  const { setProducts, searchProducts, fetchProducts } = useProduct();
+  const { setProducts, searchProducts, fetchProducts, products } = useProduct();
   const [filters, setFilters] = useState(initialState);
   const resetFilters = () => {
     setFilters(initialState);
@@ -53,6 +54,18 @@ const FiltersProvider = ({ children }) => {
           };
         });
   };
+  const searchProductsByName = async (search) => {
+    let fetchedProducts = [];
+    fetchedProducts = await fetchProducts();
+    setProducts({ type: ACTION_TYPE_LOADING, payload: [] });
+    let data = fetchedProducts.data.filter((product) =>
+      product.name.toLowerCase().includes(search.toLowerCase())
+    );
+    setProducts({
+      type: ACTION_TYPE_SUCCESS,
+      payload: data,
+    });
+  };
   useEffect(() => {
     (async () => {
       setProducts({ type: ACTION_TYPE_LOADING, payload: [] });
@@ -61,12 +74,7 @@ const FiltersProvider = ({ children }) => {
         fetchedProducts = await fetchProducts();
         fetchedProducts = fetchedProducts.data;
         let data = [];
-        if (filters.search) {
-          data = fetchedProducts.filter((product) =>
-            product.name.toLowerCase().includes(filters.search.toLowerCase())
-          );
-          fetchedProducts = data;
-        }
+
         if (filters.brands.length) {
           data = fetchedProducts.filter(
             (product) =>
@@ -98,7 +106,6 @@ const FiltersProvider = ({ children }) => {
         } else if (filters.sortBy === "-price") {
           fetchedProducts = fetchedProducts.sort((a, b) => b.price - a.price);
         }
-        console.log("first", filters.search, fetchedProducts);
 
         setProducts({
           type: ACTION_TYPE_SUCCESS,
@@ -117,6 +124,7 @@ const FiltersProvider = ({ children }) => {
         handleCategories,
         handleBrands,
         resetFilters,
+        searchProductsByName,
       }}
     >
       {children}
