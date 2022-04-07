@@ -10,6 +10,7 @@ import {
 const ProductsContext = createContext();
 const ProductsProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [productInfo, dispatchProductInfo] = useReducer(reducer, initialState);
   const fetchProducts = async () => {
     try {
       const res = await axios.get("/api/products");
@@ -35,6 +36,23 @@ const ProductsProvider = ({ children }) => {
         });
       });
   };
+  const fetchProductInfo = (id) => {
+    dispatchProductInfo({ type: ACTION_TYPE_LOADING });
+    axios
+      .get(`/api/products/${id}`)
+      .then((res) => {
+        dispatchProductInfo({
+          type: ACTION_TYPE_SUCCESS,
+          payload: res.data.product,
+        });
+      })
+      .catch((err) => {
+        dispatchProductInfo({
+          type: ACTION_TYPE_FAILURE,
+          payload: err.message,
+        });
+      });
+  };
   useEffect(() => {
     searchProducts();
   }, []);
@@ -45,6 +63,9 @@ const ProductsProvider = ({ children }) => {
         setProducts: dispatch,
         searchProducts,
         fetchProducts,
+        fetchProductInfo,
+        productInfo,
+        setProductInfo: dispatchProductInfo,
       }}
     >
       {children}

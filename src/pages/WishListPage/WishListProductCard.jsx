@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 import { useWishList } from "../../context/WishListContext";
 
@@ -17,18 +18,22 @@ const WishListProductCard = ({ product }) => {
   }, []);
   return (
     <div className="card card-sm card-dark " id="product-card">
-      <div className="card-header">
-        <img
-          src={product.images[0]}
-          alt={product.name}
-          className="h-40 w-full object-cover"
-        />
-      </div>
-      <div className="card-bottom">
-        <div className="card-body">
-          <div className="card-title">{product.name}</div>
-          <p className="card-description">{product.desc}</p>
+      <Link to={`/products/${product._id}`}>
+        <div className="card-header">
+          <img
+            src={product.images[0]}
+            alt={product.name}
+            className="h-40 w-full object-cover"
+          />
         </div>
+      </Link>
+      <div className="card-bottom">
+        <Link to={`/products/${product._id}`}>
+          <div className="card-body">
+            <div className="card-title">{product.name}</div>
+            <p className="card-description">{product.desc}</p>
+          </div>
+        </Link>
         <div className="card-footer">
           <div className="row items-center gap-05">
             <h4 className="o-70 font-semibold">Price</h4>

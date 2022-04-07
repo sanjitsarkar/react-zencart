@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { useCart } from "../../context/CartContext";
 import { useWishList } from "../../context/WishListContext";
@@ -21,22 +22,27 @@ const ProductCard = ({ product }) => {
   return (
     <div className="card  card-dark  bx-sh-light-3" id="product-card">
       {!product.inStock && <h1 className="outofstock">Out Of Stock</h1>}
-      <div className="card-header">
-        <img
-          src={product.images[0]}
-          alt={product.name}
-          className="h-40 w-full object-cover"
-        />
-      </div>
-      <div className="card-bottom">
-        <div className="card-body">
-          {product.badge != "" && (
-            <div className="card-badge  bg-secondary">{product.badge}</div>
-          )}
-
-          <div className="card-title">{product.name}</div>
-          <p className="card-description">{product.desc}</p>
+      <Link to={`/products/${product._id}`}>
+        <div className="card-header">
+          <img
+            src={product.images[0]}
+            alt={product.name}
+            className="h-40 w-full object-cover"
+          />
         </div>
+      </Link>
+
+      <div className="card-bottom">
+        <Link to={`/products/${product._id}`}>
+          <div className="card-body">
+            {product.badge != "" && (
+              <div className="card-badge  bg-secondary">{product.badge}</div>
+            )}
+
+            <div className="card-title">{product.name}</div>
+            <p className="card-description">{product.desc}</p>
+          </div>
+        </Link>
         <div className="card-footer">
           <div className="col">
             <div className="row items-center gap-05">
