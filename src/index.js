@@ -10,6 +10,7 @@ import { ToastProvider } from "./context/ToastContext";
 import { CartProvider } from "./context/CartContext";
 import { ProductsProvider } from "./context/ProductsContext";
 import { FiltersProvider } from "./context/FilterContext";
+import ScrollToTop from "./components/ScrollToTop";
 
 // Call make Server
 makeServer();
@@ -17,6 +18,7 @@ makeServer();
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
+      <ScrollToTop />
       <ToastProvider>
         <ProductsProvider>
           <FiltersProvider>

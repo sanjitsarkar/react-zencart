@@ -9,20 +9,22 @@ const initialState = {
   data: [],
   error: "",
 };
+const initialSignUpCred = {
+  email: "",
+  password: "",
+  confirmPassword: "",
+  firstName: "",
+  lastName: "",
+};
+const initialLoginCred = { email: "", password: "" };
 const AuthProvider = ({ children }) => {
   const { setToast } = useToast();
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState(localStorage?.getItem("token"));
   const [user, setUser] = useState(initialState);
-  const [loginCred, setLoginCred] = useState({ email: "", password: "" });
-  const [signupCred, setSignupCred] = useState({
-    email: "",
-    password: "",
-    confirmPassword: "",
-    firstName: "",
-    lastName: "",
-  });
+  const [loginCred, setLoginCred] = useState(initialLoginCred);
+  const [signupCred, setSignupCred] = useState(initialSignUpCred);
 
   const signUp = (e) => {
     e.preventDefault();
@@ -109,6 +111,8 @@ const AuthProvider = ({ children }) => {
       content: `Goodbye, ${user.data.firstName}`,
       type: "warning",
     });
+    setSignupCred(initialSignUpCred);
+    setLoginCred(initialLoginCred);
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     setIsLoggedIn(false);

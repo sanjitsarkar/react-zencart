@@ -4,7 +4,7 @@ const Toast = () => {
   return (
     <ToastContainer
       theme="colored"
-      position="top-right"
+      position="bottom-left"
       autoClose={2000}
       hideProgressBar={false}
       newestOnTop={false}
