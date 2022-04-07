@@ -54,12 +54,19 @@ const FiltersProvider = ({ children }) => {
         });
   };
   useEffect(() => {
-    setProducts({ type: ACTION_TYPE_LOADING, payload: [] });
-    let fetchedProducts = [];
-    fetchProducts()
-      .then((res) => {
-        fetchedProducts = res.data;
+    (async () => {
+      setProducts({ type: ACTION_TYPE_LOADING, payload: [] });
+      let fetchedProducts = [];
+      try {
+        fetchedProducts = await fetchProducts();
+        fetchedProducts = fetchedProducts.data;
         let data = [];
+        if (filters.search) {
+          data = fetchedProducts.filter((product) =>
+            product.name.toLowerCase().includes(filters.search.toLowerCase())
+          );
+          fetchedProducts = data;
+        }
         if (filters.brands.length) {
           data = fetchedProducts.filter(
             (product) =>
@@ -91,11 +98,16 @@ const FiltersProvider = ({ children }) => {
         } else if (filters.sortBy === "-price") {
           fetchedProducts = fetchedProducts.sort((a, b) => b.price - a.price);
         }
-        setProducts({ type: ACTION_TYPE_SUCCESS, payload: fetchedProducts });
-      })
-      .catch((err) => {
+        console.log("first", filters.search, fetchedProducts);
+
+        setProducts({
+          type: ACTION_TYPE_SUCCESS,
+          payload: fetchedProducts,
+        });
+      } catch (err) {
         setProducts({ type: ACTION_TYPE_FAILURE, payload: err.message });
-      });
+      }
+    })();
   }, [filters]);
   return (
     <FiltersContext.Provider

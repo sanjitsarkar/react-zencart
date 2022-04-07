@@ -1,11 +1,11 @@
 /* Product Listing Styling Section */
 .sidebar {
-  margin-top: 20vh;
   -webkit-box-flex: 3;
       -ms-flex: 3;
           flex: 3;
   padding-left: 1em;
   height: 100%;
+  margin-top: 20vh;
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
   overflow: hidden;
@@ -78,23 +78,26 @@
     -webkit-backdrop-filter: var(--blur-5);
             backdrop-filter: var(--blur-5);
     position: absolute;
-    top: 30vh;
     margin: 0;
+    margin-top: 50vh;
     padding: 1rem;
     width: 100%;
     left: 0;
     -webkit-box-shadow: var(--bx-sh-primary-1);
             box-shadow: var(--bx-sh-primary-1);
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
   }
   .filter-btn {
     display: block;
   }
-}
-
-.show {
-  display: -webkit-box !important;
-  display: -ms-flexbox !important;
-  display: flex !important;
+  .show {
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
 }
 
 .outofstock {

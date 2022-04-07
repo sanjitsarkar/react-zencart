@@ -14,7 +14,10 @@ const ProductsGrid = ({ toggleFilter }) => {
   return (
     <section className="products overflow-hidden overflow-y-auto ">
       <div className="row justify-between  mb-3 gap-05 w-full">
-        <h1 className="text-xl font-md">Showing All Products</h1>
+        <h1 className="text-xl font-md">
+          Showing {products.data.length}{" "}
+          {products.data.length > 1 ? "products" : "product"}
+        </h1>
         <button
           className="filter-btn btn btn-primary w-auto"
           onClick={toggleFilter}
