@@ -36,11 +36,12 @@ const Header = () => {
               placeholder="Search products..."
               className="input"
               defaultValue={setFilters.search}
-              onChange={async (e) => {
+              onClick={() => {
                 if (!location.pathname.includes("products")) {
-                  console.log("not");
                   navigate("/products");
                 }
+              }}
+              onChange={async (e) => {
                 await searchProductsByName(e.target.value);
               }}
             />

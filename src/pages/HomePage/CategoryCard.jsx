@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useFilter } from "../../context/FilterContext";
 const CategoryCard = ({ img, title, to = "/products" }) => {
+  const { handleCategories } = useFilter();
   return (
     <div className="card w-48" id="category-card">
       <div className="card-header">
