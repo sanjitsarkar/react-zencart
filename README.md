@@ -12,6 +12,10 @@
 
 ## Live Website: [zencart](https://zencartx.netlify.app/)
 
+## Video Demo:
+https://user-images.githubusercontent.com/8179761/162469960-25d9ec65-0708-4ec0-90c3-3c3520d2c71a.mp4
+
+
 ---
 
 ## Get started
