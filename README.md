@@ -10,7 +10,7 @@
 
 ---
 
-## Live Website: [zencart](https://zencart.netlify.app/)
+## Live Website: [zencart](https://zencartx.netlify.app/)
 
 ---
 
@@ -18,15 +18,16 @@
 
 ### Here are the links for different pages of `zencart`
 
-- [Home Page](https://zencart.netlify.app/)
-- [Products Listing Page](https://zencart.netlify.app/produts)
-- [Shopping Cart page](https://zencart.netlify.app/cart)
-- [Wishlist Page](https://zencart.netlify.app/wishlist)
-- [Login](https://zencart.netlify.app/login)
-- [Signup](https://zencart.netlify.app/signup)
+- [Home Page](https://zencartx.netlify.app/)
+- [Products Listing Page](https://zencartx.netlify.app/produts)
+- [Shopping Cart page](https://zencartx.netlify.app/cart)
+- [Wishlist Page](https://zencartx.netlify.app/wishlist)
+- [Login](https://zencartx.netlify.app/login)
+- [Signup](https://zencartx.netlify.app/signup)
 
 ### It has following features
 
+- User authentication
 - Product searching with product title.
 - Add/Remove product to/from cart.
 - Add/Remove product to/from wishlist.
