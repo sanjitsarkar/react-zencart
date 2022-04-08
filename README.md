@@ -2,8 +2,6 @@
 
 #### It's an e-commerce site for buying audio gears and musical instruments.
 
-[![GitHub followers](https://img.shields.io/github/followers/irohitgaur?style=social)](https://github.com/sanjitsarkar)
-&emsp;
 ![Forks](https://img.shields.io/github/forks/sanjitsarkar/zencart)
 &emsp;
 ![Stars](https://img.shields.io/github/stars/sanjitsarkar/zencart)
