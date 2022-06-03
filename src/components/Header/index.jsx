@@ -25,7 +25,7 @@ const Header = () => {
             <i className="fa fa-bars"></i>
           </button>
           <Link to="/" className="text-2xl text-light row gap-05 items-center">
-            <img src={LOGO} alt="ZenTube" className="w-10 logo" />
+            <img src={LOGO} alt="ZenCart" className="w-10 logo" />
             <span>
               Zen<span className="text-primary">Cart</span>
             </span>
