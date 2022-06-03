@@ -2,19 +2,50 @@
 <html lang="en">
 
 <head>
-	<meta charset="utf-8" />
-	<link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta name="description" content="" />
-	<link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-	<link rel="stylesheet" href="https://xendesign.netlify.app/css/index.css" />
-	<script src="https://xendesign.netlify.app/js/index.js" defer></script>
-	<title>ZenCart</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Your one stop solution for
+buying Audio Gears and Musical Instruments" />
+  <meta property="title" content="ZenCart - Your one stop solution for
+buying Audio Gears and Musical Instruments" />
+  <meta property="image" content="%PUBLIC_URL%/image/apple-touch-icon.png" />
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <link href="%PUBLIC_URL%/image/favicon-16x16.png" rel="icon" type="image/png" sizes="16x16" />
+  <link href="%PUBLIC_URL%/image/favicon-32x32.png" rel="icon" type="image/png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/image/apple-touch-icon.png" />
+  <meta name="theme-color" content="#FFFFFF" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://zencartx.netlify.app" />
+  <meta name="author" content="Sanjit Sarkar" />
+  <meta property="og:image" content="%PUBLIC_URL%/image/apple-touch-icon.png" />
+  <meta property="og:title" content="Your one stop solution for
+buying Audio Gears and Musical Instruments" />
+  <meta property="og:description" content="ZenCart - Your one stop solution for
+buying Audio Gears and Musical Instruments" />
+  <meta property="og:url" content="https://zencartx.netlify.app" />
+  <meta property="og:type" content="website" />
+  <meta name="keywords" content="zencartx,zencart,e-commerce,music gear,instrument,audio,shopping">
+  <link rel="icon" href="%PUBLIC_URL%/image/favicon.ico" />
+  <link rel="stylesheet" href="https://xendesign.netlify.app/css/index.css" />
+  <script src="https://xendesign.netlify.app/js/index.js" defer></script>
+  <title>ZenCart - Your one stop solution for
+    buying Audio Gears and Musical Instruments</title>
 </head>
 
 <body>
-	<noscript>You need to enable JavaScript to run this app.</noscript>
-	<div id="root"></div>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('worker.js').then(function (registration) {
+        }, function (err) {
+        }).catch(function (err) {
+        });
+      });
+    } else {
+    }
+  </script>
 </body>
 
 </html>

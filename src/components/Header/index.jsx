@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import LOGO from "../../assets/logo.png";
 import { useAuth } from "../../context/AuthContext";
 import { useCart } from "../../context/CartContext";
 import { useFilter } from "../../context/FilterContext";
 import { useWishList } from "../../context/WishListContext";
 import "./Header.css";
-
 const Header = () => {
   const [navbar, setNavbar] = useState(false);
   const { isLoggedIn, logOut } = useAuth();
@@ -24,8 +24,11 @@ const Header = () => {
           >
             <i className="fa fa-bars"></i>
           </button>
-          <Link to="/" className="text-xl text-light site-title">
-            ZenCart
+          <Link to="/" className="text-2xl text-light row gap-05 items-center">
+            <img src={LOGO} alt="ZenTube" className="w-10 logo" />
+            <span>
+              Zen<span className="text-primary">Cart</span>
+            </span>
           </Link>
 
           <div className="input-box input input-dark">

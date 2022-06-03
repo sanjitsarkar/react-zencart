@@ -31,6 +31,9 @@ header nav ul.left .input-box {
 }
 
 @media only screen and (max-width: 870px) {
+  header .logo {
+      display: none;
+    }
   header nav ul.right {
     z-index: 999;
     display: none;
@@ -71,4 +74,5 @@ input[type="search"]:focus::-webkit-search-cancel-button {
   opacity: 0.3;
   pointer-events: all;
 }
+
 /*# sourceMappingURL=Header.css.map */
