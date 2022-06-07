@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "../../components/Header";
 import { useAuth } from "../../context/AuthContext";
 
 const SignupPage = () => {
   const { signUp, signupCred, setSignupCred } = useAuth();
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   return (
     <>
@@ -63,7 +65,7 @@ const SignupPage = () => {
             <div className="input-box input input-light">
               <i className="fa fa-lock"></i>
               <input
-                type="password"
+                type={`${!showPassword ? "password" : "text"}`}
                 placeholder="Enter your password"
                 className="input"
                 defaultValue={signupCred.password}
@@ -73,12 +75,17 @@ const SignupPage = () => {
                 required
                 autoComplete="true"
               />
-              <i className="fa fa-eye"></i>
+              <i
+                className={`fa cursor-pointer ${
+                  !showPassword ? "fa-eye" : "fa-eye-slash"
+                }`}
+                onClick={() => setShowPassword(!showPassword)}
+              ></i>
             </div>
             <div className="input-box input input-light">
               <i className="fa fa-lock"></i>
               <input
-                type="password"
+                type={`${!showConfirmPassword ? "password" : "text"}`}
                 placeholder="Confirm your password"
                 className="input"
                 defaultValue={signupCred.confirmPassword}
@@ -91,7 +98,12 @@ const SignupPage = () => {
                 required
                 autoComplete="true"
               />
-              <i className="fa fa-eye"></i>
+              <i
+                className={`fa cursor-pointer ${
+                  !showConfirmPassword ? "fa-eye" : "fa-eye-slash"
+                }`}
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              ></i>
             </div>
           </div>
           <button className="btn btn-dark w-full text-lg mb-2">Signup</button>

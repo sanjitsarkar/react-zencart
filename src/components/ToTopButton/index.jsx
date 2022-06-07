@@ -1,13 +1,18 @@
 import React from "react";
 
-const ToTopButton = ({ to = "#top" }) => {
+const ToTopButton = () => {
   return (
-    <a
-      href={to}
+    <button
+      onClick={() => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      }}
       className="btn btn-float-right bg-secondary text-light btn-round-md"
     >
       <i className="fa fa-chevron-up"></i>
-    </a>
+    </button>
   );
 };
 

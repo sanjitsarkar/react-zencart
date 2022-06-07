@@ -1,11 +1,15 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import { useAuth } from "../../context/AuthContext";
 
 const LoginPage = () => {
-  const { logIn, loginCred, setLoginCred } = useAuth();
+  const { isLoggedIn, logIn, loginCred, setLoginCred } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
+  useEffect(() => {
+    isLoggedIn && navigate("/", { replace: true });
+  }, [isLoggedIn]);
   return (
     <>
       <Header />

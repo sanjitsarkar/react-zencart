@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import Header from "../../components/Header";
-import ToTopButton from "../../components/ToTopButton";
-import { FiltersProvider } from "../../context/FilterContext";
-import { ProductsProvider } from "../../context/ProductsContext";
 import FilterSection from "./FilterSection";
 import ProductsGrid from "./ProductsGrid";
 import "./ProductsPage.css";
@@ -14,7 +11,7 @@ const ProductsPage = () => {
   return (
     <>
       <Header />
-      <main className="container w-full row h-screen text-light">
+      <main className="container products-container w-full row  text-light">
         <FilterSection showFilter={showFilter} />
         <ProductsGrid toggleFilter={toggleFilter} />
       </main>

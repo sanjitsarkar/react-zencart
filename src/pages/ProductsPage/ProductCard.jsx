@@ -6,7 +6,7 @@ import RatingBar from "./RatingBar";
 
 const ProductCard = ({ product }) => {
   const { cart, addToCart } = useCart();
-  const { wishList, toggleWishList, isAlreadyInWishList } = useWishList();
+  const { wishList, toggleWishList } = useWishList();
   const { isLoggedIn } = useAuth();
   const [isInWishList, setIsInWishList] = useState(false);
   const [isInCart, setIsInCart] = useState(false);

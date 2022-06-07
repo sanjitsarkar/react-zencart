@@ -12,7 +12,8 @@ const Header = () => {
   const { cart } = useCart();
   const location = useLocation();
   const { wishList } = useWishList();
-  const { setFilters, searchProductsByName } = useFilter();
+  const { setFilters } = useFilter();
+
   const navigate = useNavigate();
   return (
     <header className=" bg-dark-2 l-2 r-2 t-2 p-2 pl-3 pr-3 h-auto fixed flex items-center z-50 br-lg b-solid b-1 h-min br-primary back-blur-5 bx-sh-primary-3">
@@ -43,8 +44,11 @@ const Header = () => {
                   navigate("/products");
                 }
               }}
-              onChange={async (e) => {
-                await searchProductsByName(e.target.value);
+              onChange={(e) => {
+                setFilters((_filters) => ({
+                  ..._filters,
+                  search: e.target.value,
+                }));
               }}
             />
           </div>
