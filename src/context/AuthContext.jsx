@@ -29,9 +29,7 @@ const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(
     localStorage?.getItem("user") ? true : false
   );
-  const [token, setToken] = useState(
-    JSON.parse(localStorage?.getItem("user"))?.token
-  );
+  const [token, setToken] = useState(localStorage?.getItem("token"));
   const [loginCred, setLoginCred] = useState(initialLoginCredState);
   const [signupCred, setSignupCred] = useState(initialSignupCredState);
   const signUp = async (e) => {
