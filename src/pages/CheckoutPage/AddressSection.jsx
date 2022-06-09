@@ -33,8 +33,10 @@ export const AddressSection = () => {
                       className="text-black-2"
                       style={{ wordBreak: "break-word" }}
                     >
-                      {address.length > 200 && address.substr(0, 200) + "...."},{" "}
-                      {city}, {state}, {country}, {pin}
+                      {address.length > 200
+                        ? address.substr(0, 200) + "...."
+                        : address}
+                      , {city}, {state}, {country}, {pin}
                     </p>
                   </div>
                 </div>
