@@ -1,16 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-import { App } from "./App";
 import { BrowserRouter } from "react-router-dom";
-import { makeServer } from "./server";
-import { AuthProvider } from "./context/AuthContext";
-import { WishListProvider } from "./context/WishListContext";
-import { ToastProvider } from "./context/ToastContext";
-import { CartProvider } from "./context/CartContext";
-import { ProductsProvider } from "./context/ProductsContext";
-import { FiltersProvider } from "./context/FilterContext";
+import { App } from "./App";
 import ScrollToTop from "./components/ScrollToTop";
+import { AddressProvider } from "./context/AddressContext";
+import { AuthProvider } from "./context/AuthContext";
+import { CartProvider } from "./context/CartContext";
+import { FiltersProvider } from "./context/FilterContext";
+import { ProductsProvider } from "./context/ProductsContext";
+import { ToastProvider } from "./context/ToastContext";
+import { WishListProvider } from "./context/WishListContext";
+import "./index.css";
+import { makeServer } from "./server";
 
 // Call make Server
 makeServer();
@@ -25,7 +26,9 @@ ReactDOM.render(
             <AuthProvider>
               <CartProvider>
                 <WishListProvider>
-                  <App />
+                  <AddressProvider>
+                    <App />
+                  </AddressProvider>
                 </WishListProvider>
               </CartProvider>
             </AuthProvider>

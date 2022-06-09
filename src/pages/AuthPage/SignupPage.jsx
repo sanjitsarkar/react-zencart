@@ -24,13 +24,13 @@ const SignupPage = () => {
               <i className="fa fa-user"></i>
               <input
                 type="text"
+                required
                 placeholder="Enter your First name"
                 className="input"
                 defaultValue={signupCred.firstName}
                 onChange={(e) =>
                   setSignupCred({ ...signupCred, firstName: e.target.value })
                 }
-                required
                 autoComplete="true"
               />
             </div>
@@ -38,13 +38,13 @@ const SignupPage = () => {
               <i className="fa fa-user"></i>
               <input
                 type="text"
+                required
                 placeholder="Enter your Last name"
                 className="input"
                 defaultValue={signupCred.lastName}
                 onChange={(e) =>
                   setSignupCred({ ...signupCred, lastName: e.target.value })
                 }
-                required
                 autoComplete="true"
               />
             </div>

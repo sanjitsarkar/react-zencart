@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 import { useWishList } from "../../context/WishListContext";
 
@@ -17,13 +18,13 @@ const WishListProductCard = ({ product }) => {
   }, []);
   return (
     <div className="card card-sm card-dark " id="product-card">
-      <div className="card-header">
+      <Link to={`/products/${product._id}`} className="card-header">
         <img
           src={product.images[0]}
           alt={product.name}
-          className="h-40 w-full object-cover"
+          className="h-40 w-full object-contain"
         />
-      </div>
+      </Link>
       <div className="card-bottom">
         <div className="card-body">
           <div className="card-title">{product.name}</div>
@@ -37,7 +38,7 @@ const WishListProductCard = ({ product }) => {
           <div className="card-actions">
             <button
               className={`btn btn-round-md ${
-                !isInCart ? "btn-light" : "btn-dark"
+                !isInCart ? "btn-light" : "btn-primary"
               }`}
               onClick={() => {
                 setIsInCart(true);
@@ -62,7 +63,7 @@ const WishListProductCard = ({ product }) => {
             >
               <i className="fa fa-heart"></i>
             </button>
-            <button className="btn btn-round-md  btn-primary">
+            <button className="btn btn-round-md  btn-dark">
               <i className="fa fa-share"></i>
             </button>
           </div>

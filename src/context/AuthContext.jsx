@@ -121,6 +121,7 @@ const AuthProvider = ({ children }) => {
       type: "warning",
     });
     localStorage.removeItem("user");
+    localStorage.removeItem("addresses");
     setIsLoggedIn(false);
     dispatch({ type: ACTION_TYPE_SUCCESS, payload: [] });
   };

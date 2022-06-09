@@ -25,7 +25,10 @@ const Header = () => {
           >
             <i className="fa fa-bars"></i>
           </button>
-          <Link to="/" className="text-2xl text-light row gap-05 items-center">
+          <Link
+            to="/"
+            className="text-2xl text-light row gap-05 items-center site-title"
+          >
             <img src={LOGO} alt="ZenCart" className="w-10 logo" />
             <span>
               Zen<span className="text-primary">Cart</span>
@@ -91,7 +94,7 @@ const Header = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/">
+                <Link to="/profile">
                   <img
                     src="https://bestprofilepictures.com/wp-content/uploads/2021/04/Cool-Profile-Picture.jpg"
                     alt="user"

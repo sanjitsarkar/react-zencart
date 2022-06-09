@@ -34,6 +34,7 @@ header nav ul.left .input-box {
   header .logo {
       display: none;
     }
+ 
   header nav ul.right {
     z-index: 999;
     display: none;

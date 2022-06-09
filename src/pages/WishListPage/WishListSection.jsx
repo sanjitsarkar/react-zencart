@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Loader from "../../components/Loader";
 import NotAvailable from "../../components/NotAvailable";
 import { useWishList } from "../../context/WishListContext";
 import WishListProductCard from "./WishListProductCard";

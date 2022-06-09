@@ -1,7 +1,7 @@
-import { v4 as uuid } from "uuid";
-import { Response } from "miragejs";
-import { formatDate } from "../utils/authUtils";
 import bcrypt from "bcryptjs";
+import { Response } from "miragejs";
+import { v4 as uuid } from "uuid";
+import { formatDate } from "../utils/authUtils";
 const jwt = require("jsonwebtoken");
 
 /**

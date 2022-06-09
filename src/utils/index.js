@@ -17,3 +17,24 @@ export function shuffle(array) {
 export const getHTTPStatusCode = (err) => {
   return err.message.slice(err.message.lastIndexOf(" ") + 1);
 };
+
+export const TEST_ADDRESS = {
+  name: "John Doe",
+  isActive: true,
+  address: "123 Main St",
+  city: "New York",
+  state: "NY",
+  country: "USA",
+  pin: "123456",
+  phone: "1234567890",
+};
+export const INITIAL_ADDRESS_STATE = {
+  name: "",
+  isActive: false,
+  address: "",
+  city: "",
+  state: "",
+  country: "",
+  pin: "",
+  phone: "",
+};

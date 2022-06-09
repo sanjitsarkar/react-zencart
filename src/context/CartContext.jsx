@@ -75,7 +75,7 @@ const CartProvider = ({ children }) => {
       });
   };
   const decrementQuantity = (id, quantity) => {
-    if (quantity === 1) {
+    if (quantity <= 1) {
       removeFromCart(id);
       return;
     }
@@ -116,6 +116,26 @@ const CartProvider = ({ children }) => {
       });
   };
 
+  const clearCart = () => {
+    cart.data.forEach((item) => {
+      axios
+        .delete(`/api/user/cart/${item._id}`, {
+          headers: { authorization: token },
+        })
+        .then((res) => {
+          setToast({
+            show: true,
+            content: `Item removed from cart`,
+            type: "error",
+          });
+          dispatchCart({ type: ACTION_TYPE_SUCCESS, payload: res.data.cart });
+        })
+        .catch((err) => {
+          dispatchCart({ type: ACTION_TYPE_FAILURE, payload: err.message });
+        });
+    });
+  };
+
   useEffect(() => {
     dispatchCart({ type: ACTION_TYPE_LOADING });
 
@@ -136,7 +156,9 @@ const CartProvider = ({ children }) => {
       value={{
         cart,
         setCart: dispatchCart,
+        clearCart,
         addToCart,
+        clearCart,
         incrementQuantity,
         decrementQuantity,
         removeFromCart,
