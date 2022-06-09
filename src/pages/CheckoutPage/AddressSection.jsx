@@ -9,7 +9,7 @@ export const AddressSection = () => {
   );
 
   return (
-    <div className="w-full bg-light p-2 text-dark">
+    <div className="w-fit bg-light p-2 text-dark">
       <div className="row justify-between  gap-3">
         <h2 className="text-dark-1">Shipping address</h2>
         <Link to="/address" className="btn btn-primary">
@@ -29,8 +29,12 @@ export const AddressSection = () => {
                     <h4 className="text-black-3 text-lg">
                       {name}, {phone}
                     </h4>
-                    <p className="text-black-2">
-                      {address}, {city}, {state}, {country}, {pin}
+                    <p
+                      className="text-black-2"
+                      style={{ wordBreak: "break-word" }}
+                    >
+                      {address.length > 200 && address.substr(0, 200) + "...."},{" "}
+                      {city}, {state}, {country}, {pin}
                     </p>
                   </div>
                 </div>

@@ -27,13 +27,13 @@ export const Address = ({
   });
   const { updateAddress, setActiveAddress, removeAddress } = useAddress();
   return (
-    <div className="br-sm row gap-2 justify-between items-center bg-primary-8 p-2">
+    <div className="w-full br-sm row gap-2 justify-between items-center bg-primary-8 p-2">
       <div className="col gap-1">
         <div className="address">
           <h4 className="text-black-3 text-lg">
             {name}, {phone}
           </h4>
-          <p className="text-dark  ">
+          <p className="text-dark" style={{ wordBreak: "break-all" }}>
             {_address}, {city}, {state}, {country}, {pin}
           </p>
         </div>
