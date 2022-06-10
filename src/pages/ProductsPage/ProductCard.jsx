@@ -22,14 +22,16 @@ const ProductCard = ({ product, cardType = "" }) => {
   return (
     <div
       className={`card  ${
-        cardType === "card-horizontal"
-          ? "cart-product-card card-horizontal"
-          : ""
+        cardType === "card-horizontal" ? "single-card card-horizontal" : ""
       } card-dark  bx-sh-light-3`}
       id="product-card"
     >
       {!product.inStock && <h1 className="outofstock">Out Of Stock</h1>}
-      <Link to={`${product._id}`} state={product} className="card-header">
+      <Link
+        to={`/products/${product._id}`}
+        state={product}
+        className="card-header"
+      >
         <img
           src={product.images[0]}
           alt={product.name}
@@ -69,7 +71,7 @@ const ProductCard = ({ product, cardType = "" }) => {
           <div className="card-actions">
             <button
               className={`btn btn-round-md ${
-                isLoggedIn && !isInCart ? "btn-light" : "btn-primary"
+                isLoggedIn && isInCart ? "btn-primary" : "btn-light"
               }`}
               onClick={() => {
                 isLoggedIn && setIsInCart(true);

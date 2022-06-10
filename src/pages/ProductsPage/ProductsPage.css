@@ -29,6 +29,10 @@ height: 80vh;
 .sidebar .col {
   padding: 0.5rem;
 }
+.card-horizontal .card-bottom{
+  max-width: unset !important;
+
+}
 
 .products {
   -webkit-box-flex: 12;
