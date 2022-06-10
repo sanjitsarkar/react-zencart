@@ -33,7 +33,7 @@ const CartProductCard = ({ product, type = "" }) => {
             <h4 className="text-md font-medium">₹ {product.price}</h4>
           </div>
           {type !== "checkout" && (
-            <div className="card-actions justify-between">
+            <div className="card-actions justify-between flex-wrap">
               <button
                 className=" btn-round-md btn btn-dark"
                 onClick={() => decrementQuantity(product._id, product.qty)}

@@ -20,6 +20,7 @@ const ProductsGrid = ({ toggleFilter }) => {
         </h1>
         <button
           className="filter-btn btn btn-primary w-auto fixed r-1"
+          style={{ zIndex: 100 }}
           onClick={toggleFilter}
         >
           <i className="fa fa-filter mr-1"></i>

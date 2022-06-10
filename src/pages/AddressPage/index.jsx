@@ -14,7 +14,7 @@ export const AddressPage = () => {
     <>
       <Header />
       <main className="cart-wrapper  h-full l-0 r-0 w-full relative text-light row justify-center">
-        <div className="col br-sm justify-center items-center bg-light w-max p-2 gap-1 ">
+        <div className="col br-sm justify-center items-center bg-light m-2 w-max p-2 gap-1 ">
           <h2 className="text-dark-1">Manage address</h2>
           <button
             onClick={() => setShowAddressForm(!showAddressForm)}

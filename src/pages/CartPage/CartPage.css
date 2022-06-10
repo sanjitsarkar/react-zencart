@@ -10,7 +10,7 @@
   position: absolute;
     left: 5rem;
   padding-bottom: 5vh;
-  width: 62vw;
+  width: min(100%,62vw);
 }
 
 .apply-btn {
@@ -29,7 +29,7 @@
 
 .cart-product-card {
  
-  width: 62vw;
+    width: min(100%, 62vw);
 }
 #product-card{
   justify-content: space-between;

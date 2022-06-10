@@ -32,6 +32,9 @@ form.form {
 }
 
 @media only screen and (max-width: 535px) {
+  .address-section {
+    justify-content: center;
+  }
   form.form {
     padding: 1rem;
   }

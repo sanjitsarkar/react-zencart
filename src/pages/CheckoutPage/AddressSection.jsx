@@ -9,9 +9,9 @@ export const AddressSection = () => {
   );
 
   return (
-    <div className="w-fit bg-light p-2 text-dark">
-      <div className="row justify-between  gap-3">
-        <h2 className="text-dark-1">Shipping address</h2>
+    <div className="w-full br-sm bg-light p-2 text-dark">
+      <div className="row  address-section   gap-1 items-center">
+        <h2 className="text-dark-1 font-medium text-xl">Shipping address</h2>
         <Link to="/address" className="btn btn-primary">
           Manage address
         </Link>
@@ -45,7 +45,9 @@ export const AddressSection = () => {
           }
         )}
       {activeAddress.length === 0 && (
-        <p className="mt-1">You have no any active shipping address.</p>
+        <p className="mt-1 text-center">
+          You have no any active shipping address.
+        </p>
       )}
     </div>
   );

@@ -10,7 +10,7 @@ const CheckoutSection = () => {
 
   return (
     <>
-      <h1 className="text-2xl text-center pt-2">Checkout</h1>
+      <h1 className="text-2xl text-center ">Checkout</h1>
       <section className="cart-section relative w-full h-full  mt-3  mr-0 pr-0 row gap-2 row justify-center">
         {cart.data.length > 0 && (
           <>

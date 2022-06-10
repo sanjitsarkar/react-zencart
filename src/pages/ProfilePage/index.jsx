@@ -10,7 +10,7 @@ export const ProfilePage = () => {
     <>
       <Header />
       <main className="cart-wrapper h-full l-0 r-0 w-full relative text-dark flex justify-center">
-        <div className="bg-light p-2 br-sm  w-max h-max col gap-1">
+        <div className="bg-light p-2 br-sm  w-max h-max m-2 col gap-1">
           <div className="col items-center pl-3 pr-3 pt-3 ">
             <h2>
               {user.data.firstName} {user.data.lastName}
