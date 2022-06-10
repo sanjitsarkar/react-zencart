@@ -4,12 +4,11 @@ import LOGO from "../../assets/logo.png";
 import { useAuth } from "../../context/AuthContext";
 import { useCart } from "../../context/CartContext";
 
-const CartPriceDetails = ({ cart, type }) => {
+const CartPriceDetails = ({ cart, type, setIsPaymentSuccessfull }) => {
   const [totalMarketPrice, setTotalMarketPrice] = useState(0);
   const [totalQuantity, setTotalQuantity] = useState(0);
   const [totalDiscount, setTotalDiscount] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
-  const [IsPaymentSuccessfull, setIsPaymentSuccessfull] = useState(false);
   const { clearCart } = useCart();
   const { user } = useAuth();
   const loadRazorPay = () => {
@@ -31,7 +30,7 @@ const CartPriceDetails = ({ cart, type }) => {
     if (!response) return;
     var options = {
       key_id: process.env.REACT_APP_RAZOR_PAY_KEY_ID,
-      key: process.env.REACT_APP_RAZOR_PAY_KEY_SECRET,
+      key: process.env.REACT_APP_RAZOR_PAY_KEY_ID,
       amount: Math.round(totalPrice) * 100,
       currency: "INR",
       name: "ZenCart",
@@ -71,6 +70,7 @@ const CartPriceDetails = ({ cart, type }) => {
       setTotalPrice(_totalMarketPrice - _totalDiscount);
     }
   }, [cart]);
+
   return (
     <div className="cart-price-details bg p-2 bg-black br-sm  ">
       <div className="price-details">
