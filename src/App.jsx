@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import PrivateRoute from "./components/PrivateRoute";
 import Toast from "./components/Toast";
 import { CartPage, HomePage, ProductsPage, WishListPage } from "./pages";
-import PagNotFound from "./pages/404";
+import PageNotFound from "./pages/404";
 import { AddressPage } from "./pages/AddressPage";
 import LoginPage from "./pages/AuthPage/LoginPage";
 import SignupPage from "./pages/AuthPage/SignupPage";
@@ -31,7 +31,7 @@ function App() {
         </Route>
 
         <Route path="/mockman" element={<MockmanEs />} />
-        <Route path="*" element={<PagNotFound />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
       <Toast />
     </>
