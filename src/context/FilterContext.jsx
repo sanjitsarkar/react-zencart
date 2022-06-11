@@ -1,4 +1,4 @@
-import React, { useEffect, useState, createContext, useContext } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import {
   ACTION_TYPE_FAILURE,
   ACTION_TYPE_LOADING,
@@ -74,7 +74,6 @@ const FiltersProvider = ({ children }) => {
         fetchedProducts = await fetchProducts();
         fetchedProducts = fetchedProducts.data;
         let data = [];
-
         if (filters.brands.length) {
           data = fetchedProducts.filter(
             (product) =>
@@ -106,7 +105,15 @@ const FiltersProvider = ({ children }) => {
         } else if (filters.sortBy === "-price") {
           fetchedProducts = fetchedProducts.sort((a, b) => b.price - a.price);
         }
-
+        if (filters.search) {
+          fetchedProducts = fetchedProducts.filter(
+            (product) =>
+              product.name
+                .toLowerCase()
+                .includes(filters.search.toLowerCase()) ||
+              product.desc.toLowerCase().includes(filters.search.toLowerCase())
+          );
+        }
         setProducts({
           type: ACTION_TYPE_SUCCESS,
           payload: fetchedProducts,

@@ -1,143 +1,140 @@
-import axios from "axios";
-import React, { useEffect, useState, createContext, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { createContext, useContext, useReducer, useState } from "react";
+import { reducer } from "../reducers/reducer";
+import {
+  ACTION_TYPE_FAILURE,
+  ACTION_TYPE_LOADING,
+  ACTION_TYPE_SUCCESS,
+  getHTTPStatusCode,
+} from "../utils";
+import { callApi } from "../utils/callApi";
 import { useToast } from "./ToastContext";
 
 const AuthContext = createContext();
-const initialState = {
-  loading: true,
-  data: [],
-  error: "",
-};
-const initialSignUpCred = {
+const initialSignupCredState = {
   email: "",
   password: "",
   confirmPassword: "",
   firstName: "",
   lastName: "",
 };
-const initialLoginCred = { email: "", password: "" };
+const initialLoginCredState = { email: "", password: "" };
+const initialState = {
+  data: JSON.parse(localStorage?.getItem("user")),
+  loading: false,
+  erorr: "",
+};
 const AuthProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(reducer, initialState);
   const { setToast } = useToast();
-  const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    localStorage?.getItem("user") ? true : false
+  );
   const [token, setToken] = useState(localStorage?.getItem("token"));
-  const [user, setUser] = useState(initialState);
-  const [loginCred, setLoginCred] = useState(initialLoginCred);
-  const [signupCred, setSignupCred] = useState(initialSignUpCred);
-
-  const signUp = (e) => {
+  const [loginCred, setLoginCred] = useState(initialLoginCredState);
+  const [signupCred, setSignupCred] = useState(initialSignupCredState);
+  const signUp = async (e) => {
     e.preventDefault();
-    if (signupCred.password !== signupCred.confirmPassword) {
+    dispatch({ type: ACTION_TYPE_LOADING });
+    try {
+      if (signupCred.password !== signupCred.confirmPassword) {
+        setToast({
+          show: true,
+          content: "Passwords do not match",
+          type: "info",
+        });
+        return;
+      }
+      const result = await callApi("post", "auth/signup", false, {
+        firstName: signupCred.firstName,
+        lastName: signupCred.lastName,
+        email: signupCred.email,
+        password: signupCred.password,
+      });
       setToast({
         show: true,
-        content: "Passwords do not match",
+        content: `Welcome, ${result.data.createdUser.firstName}`,
         type: "info",
       });
-      return;
+      setLoginCred(initialLoginCredState);
+      setSignupCred(initialSignupCredState);
+      storeUserData(result.data.createdUser);
+      setToken(result.data.encodedToken);
+
+      dispatch({
+        type: ACTION_TYPE_SUCCESS,
+        payload: result.data.createdUser,
+      });
+    } catch (err) {
+      if (err.message)
+        setToast({
+          show: true,
+          content: "Email is already registered",
+          type: "error",
+        });
+
+      dispatch({ type: ACTION_TYPE_FAILURE, payload: err.message });
     }
-    axios
-      .post(
-        "/api/auth/signup",
-        JSON.stringify({
-          firstName: signupCred.firstName,
-          lastName: signupCred.lastName,
-          email: signupCred.email,
-          password: signupCred.password,
-        })
-      )
-      .then((res) => {
-        setToast({
-          show: true,
-          content: `Welcome, ${res.data.createdUser.firstName}`,
-          type: "info",
-        });
-        setUser({ loading: false, data: res.createdUser, error: "" });
-        setIsLoggedIn(true);
-      })
-      .catch((err) => {
-        if (err.message)
-          setToast({
-            show: true,
-            content: "Email is already registered",
-            type: "error",
-          });
-
-        setUser({ loading: false, data: [], error: err.message });
-      });
   };
-  const logIn = (e) => {
+  const logIn = async (e) => {
     e.preventDefault();
-    axios
-      .post(
-        "/api/auth/login",
-        JSON.stringify({
-          email: loginCred.email,
-          password: loginCred.password,
-        })
-      )
-      .then((res) => {
+    dispatch({ type: ACTION_TYPE_LOADING });
+    try {
+      const result = await callApi("post", "auth/login", false, {
+        email: loginCred.email,
+        password: loginCred.password,
+      });
+      setToast({
+        show: true,
+        content: `Welcome, ${result.data.foundUser.firstName}`,
+        type: "info",
+      });
+      localStorage.setItem("token", result.data.encodedToken);
+      setToken(result.data.encodedToken);
+      setLoginCred(initialLoginCredState);
+      setSignupCred(initialSignupCredState);
+      storeUserData(result.data.foundUser);
+      dispatch({ type: ACTION_TYPE_SUCCESS, payload: result.data.foundUser });
+
+      setIsLoggedIn(true);
+    } catch (err) {
+      if (getHTTPStatusCode(err) === "401")
         setToast({
           show: true,
-          content: `Welcome, ${res.data.foundUser.firstName}`,
-          type: "info",
+          content: "Wrong Password",
+          type: "error",
         });
-        localStorage.setItem("token", res.data.encodedToken);
+      else if (getHTTPStatusCode(err) === "404")
+        setToast({
+          show: true,
+          content: "Email is not registered yet",
+          type: "error",
+        });
+      else setToast({ show: true, content: err.message, type: "error" });
 
-        setUser({ loading: false, data: res.data.foundUser, error: "" });
-        setIsLoggedIn(true);
-      })
-      .catch((err) => {
-        if (err.message.slice(err.message.lastIndexOf(" ") + 1) === "401")
-          setToast({
-            show: true,
-            content: "Wrong Password",
-            type: "error",
-          });
-        else if (err.message.slice(err.message.lastIndexOf(" ") + 1) === "404")
-          setToast({
-            show: true,
-            content: "Email is not registered yet",
-            type: "error",
-          });
-        else setToast({ show: true, content: err.message, type: "error" });
-
-        setUser({ loading: false, data: [], error: err.message });
-      });
+      dispatch({ type: ACTION_TYPE_FAILURE, payload: err.message });
+    }
   };
   const logOut = () => {
     setToast({
       show: true,
-      content: `Goodbye, ${user.data.firstName}`,
+      content: `Goodbye, ${state.data.firstName}`,
       type: "warning",
     });
-    setSignupCred(initialSignUpCred);
-    setLoginCred(initialLoginCred);
-    localStorage.removeItem("token");
     localStorage.removeItem("user");
+    localStorage.removeItem("addresses");
     setIsLoggedIn(false);
-    setUser(initialState);
+    dispatch({ type: ACTION_TYPE_SUCCESS, payload: [] });
   };
-  useEffect(() => {
-    if (isLoggedIn) {
-      setToken(localStorage.getItem("token"));
-      localStorage.setItem("user", JSON.stringify(user));
-      navigate("/", { replace: true });
-    }
-  }, [isLoggedIn]);
-  useEffect(() => {
-    if (localStorage.getItem("token")) {
-      setToken(localStorage.getItem("token"));
-      setIsLoggedIn(true);
-      setUser(JSON.parse(localStorage.getItem("user")));
-      navigate("/", { replace: true });
-    }
-  }, []);
+  const storeUserData = (data) => {
+    localStorage.setItem("user", JSON.stringify(data));
+    setIsLoggedIn(true);
+  };
   return (
     <AuthContext.Provider
       value={{
         token,
-        user,
+        user: state,
+        setUser: dispatch,
         isLoggedIn,
         signUp,
         logIn,

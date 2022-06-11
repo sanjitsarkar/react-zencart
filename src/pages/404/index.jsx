@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import NotAvailable from "../../components/NotAvailable";
 import PageNotFoundImage from "./404.png";
-const PagNotFound = () => {
+const PageNotFound = () => {
   return (
     <div className="w-screen h-screen text-light">
       <NotAvailable
@@ -21,4 +21,4 @@ const PagNotFound = () => {
   );
 };
 
-export default PagNotFound;
+export default PageNotFound;

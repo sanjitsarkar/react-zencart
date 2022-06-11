@@ -12,7 +12,8 @@ const Header = () => {
   const { cart } = useCart();
   const location = useLocation();
   const { wishList } = useWishList();
-  const { setFilters, searchProductsByName } = useFilter();
+  const { setFilters } = useFilter();
+
   const navigate = useNavigate();
   return (
     <header className=" bg-dark-2 l-2 r-2 t-2 p-2 pl-3 pr-3 h-auto fixed flex items-center z-50 br-lg b-solid b-1 h-min br-primary back-blur-5 bx-sh-primary-3">
@@ -24,7 +25,10 @@ const Header = () => {
           >
             <i className="fa fa-bars"></i>
           </button>
-          <Link to="/" className="text-2xl text-light row gap-05 items-center">
+          <Link
+            to="/"
+            className="text-2xl text-light row gap-05 items-center site-title"
+          >
             <img src={LOGO} alt="ZenCart" className="w-10 logo" />
             <span>
               Zen<span className="text-primary">Cart</span>
@@ -43,8 +47,11 @@ const Header = () => {
                   navigate("/products");
                 }
               }}
-              onChange={async (e) => {
-                await searchProductsByName(e.target.value);
+              onChange={(e) => {
+                setFilters((_filters) => ({
+                  ..._filters,
+                  search: e.target.value,
+                }));
               }}
             />
           </div>
@@ -87,7 +94,7 @@ const Header = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/">
+                <Link to="/profile">
                   <img
                     src="https://bestprofilepictures.com/wp-content/uploads/2021/04/Cool-Profile-Picture.jpg"
                     alt="user"

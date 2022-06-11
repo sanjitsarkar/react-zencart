@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { useFilter } from "../../context/FilterContext";
 
 const FilterSection = ({ showFilter }) => {
   const { filters, setFilters, handleCategories, handleBrands, resetFilters } =
     useFilter();
+  const [searchParams] = useSearchParams();
+  useEffect(() => {
+    if (searchParams.get("category"))
+      setFilters((_filters) => {
+        return {
+          ..._filters,
+          categegories: [_filters.categegories, searchParams?.get("category")],
+        };
+      });
+  }, [searchParams]);
 
   return (
     <aside

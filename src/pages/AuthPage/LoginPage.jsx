@@ -1,11 +1,15 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import { useAuth } from "../../context/AuthContext";
 
 const LoginPage = () => {
-  const { logIn, loginCred, setLoginCred } = useAuth();
+  const { isLoggedIn, logIn, loginCred, setLoginCred } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
+  useEffect(() => {
+    isLoggedIn && navigate("/", { replace: true });
+  }, [isLoggedIn]);
   return (
     <>
       <Header />
@@ -22,13 +26,13 @@ const LoginPage = () => {
               <i className="fa fa-user"></i>
               <input
                 type="text"
+                required
                 placeholder="Enter your email"
                 className="input"
                 defaultValue={loginCred.email}
                 onChange={(e) =>
                   setLoginCred({ ...loginCred, email: e.target.value })
                 }
-                required
                 autoComplete="true"
               />
             </div>
@@ -61,7 +65,7 @@ const LoginPage = () => {
           </div>
           <button className="btn btn-dark w-full text-lg mb-2">Login</button>
           <button
-            className="btn btn-info w-full text-md mb-1"
+            className="btn btn-secondary w-full text-md mb-1"
             onClick={() => {
               setLoginCred({
                 email: "johndoe@gmail.com",

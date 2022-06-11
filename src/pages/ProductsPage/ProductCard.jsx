@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { useCart } from "../../context/CartContext";
 import { useWishList } from "../../context/WishListContext";
 import RatingBar from "./RatingBar";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, cardType = "" }) => {
   const { cart, addToCart } = useCart();
-  const { wishList, toggleWishList, isAlreadyInWishList } = useWishList();
+  const { wishList, toggleWishList } = useWishList();
   const { isLoggedIn } = useAuth();
   const [isInWishList, setIsInWishList] = useState(false);
   const [isInCart, setIsInCart] = useState(false);
@@ -19,15 +20,25 @@ const ProductCard = ({ product }) => {
     });
   }, []);
   return (
-    <div className="card  card-dark  bx-sh-light-3" id="product-card">
+    <div
+      className={`card  ${
+        cardType === "card-horizontal" ? "single-card card-horizontal" : ""
+      } card-dark  bx-sh-light-3`}
+      id="product-card"
+    >
       {!product.inStock && <h1 className="outofstock">Out Of Stock</h1>}
-      <div className="card-header">
+      <Link
+        to={`/products/${product._id}`}
+        state={product}
+        className="card-header"
+      >
         <img
           src={product.images[0]}
           alt={product.name}
-          className="h-40 w-full object-cover"
+          className="img h-40 w-full object-contain"
+          id="cart-image"
         />
-      </div>
+      </Link>
       <div className="card-bottom">
         <div className="card-body">
           {product.badge != "" && (
@@ -60,7 +71,7 @@ const ProductCard = ({ product }) => {
           <div className="card-actions">
             <button
               className={`btn btn-round-md ${
-                isLoggedIn && !isInCart ? "btn-light" : "btn-dark"
+                isLoggedIn && isInCart ? "btn-primary" : "btn-light"
               }`}
               onClick={() => {
                 isLoggedIn && setIsInCart(true);
@@ -87,7 +98,7 @@ const ProductCard = ({ product }) => {
             >
               <i className="fa fa-heart"></i>
             </button>
-            <button className="btn btn-round-md  btn-primary">
+            <button className="btn btn-round-md  btn-dark">
               <i className="fa fa-share"></i>
             </button>
           </div>

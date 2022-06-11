@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Loader from "../../components/Loader";
 import NotAvailable from "../../components/NotAvailable";
 import { useCart } from "../../context/CartContext";
 import CartPriceDetails from "./CartPriceDetails";
@@ -11,8 +10,8 @@ const CartSection = () => {
 
   return (
     <>
-      <h1 className="text-2xl text-center pt-2">Shopping Cart</h1>
-      <section className="cart-section w-full h-full  mt-3  mr-0 pr-0 row gap-2 row justify-center">
+      <h1 className="text-2xl text-center">Shopping Cart</h1>
+      <section className="cart-section relative w-full h-full  mt-3  mr-0 pr-0 row gap-2 row justify-center">
         {cart.data.length > 0 && (
           <>
             <CartProducts cart={cart} />

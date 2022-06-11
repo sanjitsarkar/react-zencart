@@ -1,10 +1,10 @@
 import axios from "axios";
-import React, { useEffect, useReducer, createContext, useContext } from "react";
+import React, { createContext, useContext, useEffect, useReducer } from "react";
 import { initialState, reducer } from "../reducers/reducer";
 import {
   ACTION_TYPE_FAILURE,
-  ACTION_TYPE_SUCCESS,
   ACTION_TYPE_LOADING,
+  ACTION_TYPE_SUCCESS,
   shuffle,
 } from "../utils";
 const ProductsContext = createContext();
