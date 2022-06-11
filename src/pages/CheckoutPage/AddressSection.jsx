@@ -45,9 +45,7 @@ export const AddressSection = () => {
           }
         )}
       {activeAddress.length === 0 && (
-        <p className="mt-1 text-center">
-          You have no any active shipping address.
-        </p>
+        <p className="mt-1 ">You have no any active shipping address.</p>
       )}
     </div>
   );
