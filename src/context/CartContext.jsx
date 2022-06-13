@@ -125,11 +125,6 @@ const CartProvider = ({ children }) => {
           headers: { authorization: token },
         })
         .then((res) => {
-          setToast({
-            show: true,
-            content: `Item removed from cart`,
-            type: "error",
-          });
           dispatchCart({ type: ACTION_TYPE_SUCCESS, payload: res.data.cart });
         })
         .catch((err) => {
