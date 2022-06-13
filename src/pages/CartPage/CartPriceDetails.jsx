@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import LOGO from "../../assets/logo.png";
+import { useAddress } from "../../context/AddressContext";
 import { useAuth } from "../../context/AuthContext";
 import { useCart } from "../../context/CartContext";
 
@@ -9,6 +11,7 @@ const CartPriceDetails = ({ cart, type, setIsPaymentSuccessfull }) => {
   const [totalQuantity, setTotalQuantity] = useState(0);
   const [totalDiscount, setTotalDiscount] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
+  const { addresses } = useAddress();
   const { clearCart } = useCart();
   const { user } = useAuth();
   const loadRazorPay = () => {
@@ -26,6 +29,10 @@ const CartPriceDetails = ({ cart, type, setIsPaymentSuccessfull }) => {
   };
 
   const paymentHandler = async () => {
+    if (!addresses.data.filter((address) => address.isActive).length) {
+      toast("Please add an active address to proceed", { type: "error" });
+      return;
+    }
     const response = await loadRazorPay();
     if (!response) return;
     var options = {

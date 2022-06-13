@@ -13,20 +13,25 @@ const CheckoutSection = () => {
     <>
       <h1 className="text-2xl text-center ">Checkout</h1>
       <section className="cart-section relative w-full h-full  mt-3  mr-0 pr-0 row gap-2 row justify-center">
-        {cart.data.length > 0 && (
+        {cart.data.length > 0 && !IsPaymentSuccessfull ? (
           <>
-            {!IsPaymentSuccessfull && (
-              <>
-                <CartProducts cart={cart} type="checkout" />
-                <CartPriceDetails
-                  cart={cart}
-                  type="checkout"
-                  IsPaymentSuccessfull={IsPaymentSuccessfull}
-                  setIsPaymentSuccessfull={setIsPaymentSuccessfull}
-                />
-              </>
-            )}
+            <CartProducts cart={cart} type="checkout" />
+            <CartPriceDetails
+              cart={cart}
+              type="checkout"
+              IsPaymentSuccessfull={IsPaymentSuccessfull}
+              setIsPaymentSuccessfull={setIsPaymentSuccessfull}
+            />
           </>
+        ) : (
+          <NotAvailable
+            title="Checkout is empty"
+            children={
+              <Link to="/products" className="btn btn-secondary">
+                Browse Products
+              </Link>
+            }
+          />
         )}
         {IsPaymentSuccessfull && (
           <div className="col gap-1 items-center">
@@ -38,17 +43,6 @@ const CheckoutSection = () => {
               Shop More
             </Link>
           </div>
-        )}
-
-        {!IsPaymentSuccessfull && !cart.data.length && (
-          <NotAvailable
-            title="Checkout is empty"
-            children={
-              <Link to="/products" className="btn btn-secondary">
-                Browse Products
-              </Link>
-            }
-          />
         )}
       </section>
     </>

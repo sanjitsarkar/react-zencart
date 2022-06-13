@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { createContext, useContext, useEffect, useReducer } from "react";
+import { useNavigate } from "react-router-dom";
 import { initialState, reducer } from "../reducers/reducer";
 import {
   ACTION_TYPE_FAILURE,
@@ -9,11 +10,11 @@ import {
 import { useAuth } from "./AuthContext";
 import { useToast } from "./ToastContext";
 const CartContext = createContext();
-
 const CartProvider = ({ children }) => {
   const { setToast } = useToast();
   const { token, isLoggedIn } = useAuth();
   const [cart, dispatchCart] = useReducer(reducer, initialState);
+  const navigate = useNavigate();
   const addToCart = (product) => {
     dispatchCart({ type: ACTION_TYPE_LOADING });
     if (!isLoggedIn) {
@@ -22,6 +23,7 @@ const CartProvider = ({ children }) => {
         content: "Please login to add item to cart",
         type: "error",
       });
+      navigate("/login");
       return;
     }
     if (cart.data.find((item) => item._id === product._id)) {

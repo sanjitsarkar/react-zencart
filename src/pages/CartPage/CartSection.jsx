@@ -12,13 +12,12 @@ const CartSection = () => {
     <>
       <h1 className="text-2xl text-center">Shopping Cart</h1>
       <section className="cart-section relative w-full h-full  mt-3  mr-0 pr-0 row gap-2 row justify-center">
-        {cart.data.length > 0 && (
+        {cart.data.length > 0 ? (
           <>
             <CartProducts cart={cart} />
             <CartPriceDetails cart={cart} />
           </>
-        )}
-        {!cart.data.length && (
+        ) : (
           <NotAvailable
             title="Cart is empty"
             children={

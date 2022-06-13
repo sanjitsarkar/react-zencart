@@ -1,11 +1,6 @@
 import axios from "axios";
-import React, {
-  useState,
-  createContext,
-  useContext,
-  useEffect,
-  useReducer,
-} from "react";
+import React, { createContext, useContext, useEffect, useReducer } from "react";
+import { useNavigate } from "react-router-dom";
 import { initialState, reducer } from "../reducers/reducer";
 import {
   ACTION_TYPE_FAILURE,
@@ -20,6 +15,7 @@ const WishListProvider = ({ children }) => {
   const { isLoggedIn } = useAuth();
   const [wishList, dispatchWishList] = useReducer(reducer, initialState);
   const { setToast } = useToast();
+  const navigate = useNavigate();
   const toggleWishList = (product) => {
     if (!isLoggedIn) {
       setToast({
@@ -27,6 +23,8 @@ const WishListProvider = ({ children }) => {
         content: "Please login to add item to wishlist",
         type: "error",
       });
+      navigate("/login");
+
       return;
     }
     if (wishList.data.find((item) => item._id === product._id)) {
