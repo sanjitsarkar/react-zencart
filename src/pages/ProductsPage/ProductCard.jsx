@@ -98,9 +98,13 @@ const ProductCard = ({ product, cardType = "" }) => {
             >
               <i className="fa fa-heart"></i>
             </button>
-            <button className="btn btn-round-md  btn-dark">
+            <Link
+              to={`/products/${product._id}`}
+              state={product}
+              className="btn btn-round-md  btn-dark"
+            >
               <i className="fa fa-share"></i>
-            </button>
+            </Link>
           </div>
         </div>
       </div>
