@@ -54,18 +54,7 @@ const FiltersProvider = ({ children }) => {
           };
         });
   };
-  const searchProductsByName = async (search) => {
-    let fetchedProducts = [];
-    fetchedProducts = await fetchProducts();
-    setProducts({ type: ACTION_TYPE_LOADING, payload: [] });
-    let data = fetchedProducts.data.filter((product) =>
-      product.name.toLowerCase().includes(search.toLowerCase())
-    );
-    setProducts({
-      type: ACTION_TYPE_SUCCESS,
-      payload: data,
-    });
-  };
+
   useEffect(() => {
     (async () => {
       setProducts({ type: ACTION_TYPE_LOADING, payload: [] });
@@ -111,7 +100,17 @@ const FiltersProvider = ({ children }) => {
               product.name
                 .toLowerCase()
                 .includes(filters.search.toLowerCase()) ||
-              product.desc.toLowerCase().includes(filters.search.toLowerCase())
+              product.desc
+                .toLowerCase()
+                .includes(
+                  filters.search.toLowerCase() ||
+                    product.categories
+                      .toLowerCase()
+                      .includes(filters.search.toLowerCase()) ||
+                    product.brands
+                      .toLowerCase()
+                      .includes(filters.search.toLowerCase())
+                )
           );
         }
         setProducts({
@@ -131,7 +130,6 @@ const FiltersProvider = ({ children }) => {
         handleCategories,
         handleBrands,
         resetFilters,
-        searchProductsByName,
       }}
     >
       {children}

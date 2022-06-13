@@ -36,7 +36,11 @@ export const products = [
   {
     _id: uuid(),
     name: "Pioneer DJ Kit",
-    desc: "Reference Headphone for control and monitoring purpose – 32, 80 & 250 ohms (closed)",
+    desc: `Rekordbox DJ licence key card (version 5)
+Operating instructions (Quick Start Guide)
+Plug and play, USB bus powered
+Built-in Soundcard
+Filter high and low pass filter, included dj software rekordbox dj`,
     images: [IMAGES.DJ_KIT],
     categoryName: "DJ Kit",
     brand: "Pioneer",
