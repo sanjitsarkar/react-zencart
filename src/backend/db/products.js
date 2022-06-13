@@ -107,7 +107,8 @@ Filter high and low pass filter, included dj software rekordbox dj`,
   {
     _id: uuid(),
     name: "YAMAHA PSR-E373 61-Keys Portable Keyboard",
-    desc: "Yamaha Headphone 3D Sound Field with head tracking: experience movies and videos on your mobile device with cinema-like sound that immerses you in the action, at home or on the go",
+    desc: `The PSR-E373 is an ideal portable keyboard for beginners and hobbyists
+Packed with over 622 stunning sounding instrument Voices and a wealth of accompaniment Styles`,
     images: [IMAGES.YAMAHA_PSR_E373],
     categoryName: "Keyboard",
     brand: "Yamaha",
